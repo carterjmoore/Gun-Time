@@ -1,6 +1,6 @@
 # CS2053 Project
 
-FPS puzzle game made in an Intro to Video Game Development class
+FPS puzzle game made in an Intro to Video Game Development class.
 
 ## Contributors
 Carter Moore\
