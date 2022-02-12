@@ -1,6 +1,6 @@
-# Reflex Revolution
+# CS2053 Project
 
-Android application made during an introduction class to mobile application development.
+FPS puzzle game made in an Intro to Video Game Development class
 
 ## Contributors
 Carter Moore\
