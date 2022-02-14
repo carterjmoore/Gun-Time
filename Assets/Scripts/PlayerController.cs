@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
         //Make it so player moves perpendicular to slope if on a slope
         else if(isGrounded && onSlope())
         {
-            rb.AddForce(slopeMoveDirection.normalized * speed * movementMultiplier * airMultiplier, ForceMode.Acceleration);
+            rb.AddForce(slopeMoveDirection.normalized * speed * movementMultiplier, ForceMode.Acceleration);
         }
         //Make it so the player moves slower while in the air
         else if(!isGrounded)
@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
     //Check if the player is on a slope
     private bool onSlope()
     {
-        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight/2 + 0.5f))
+        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight/2 + 0.55f))
         {
             if (slopeHit.normal != Vector3.up)
             {
