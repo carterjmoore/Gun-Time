@@ -14,10 +14,10 @@ public class MovingPlatformController : ShootableEnvironment
     // Start is called before the first frame update
     protected override void Start()
     {
+        base.Start();
         pos1 = transform.position;
         pos2 = new Vector3(pos1.x + 20f, pos1.y, pos1.z);
         distance = Vector3.Distance(pos1, pos2);
-        Debug.Log(distance);
         movingBack = false;
         fraction = 0;
     }
@@ -25,20 +25,38 @@ public class MovingPlatformController : ShootableEnvironment
     // Update is called once per frame
     protected override void Update()
     {
-        Debug.Log(fraction);
+        base.Update();
         if(!movingBack)
         {
-            fraction += speed / distance * Time.deltaTime;
+            fraction += speed / distance * timeMultiplier() * Time.deltaTime;
             fraction = Mathf.Clamp01(fraction);
             transform.position = Vector3.Lerp(pos1, pos2, fraction);
             if (fraction == 1) movingBack = true;
         }
         else
         {
-            fraction -= speed / distance * Time.deltaTime;
+            fraction -= speed / distance * timeMultiplier() * Time.deltaTime;
             fraction = Mathf.Clamp01(fraction);
             transform.position = Vector3.Lerp(pos1, pos2, fraction);
             if (fraction == 0) movingBack = false;
+        }
+    }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            //Get parent 3 times because the collider is on the Capsule, which is 2 levels below the Player object
+            other.transform.parent.parent.parent = transform;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.transform.parent.parent.parent = null;
         }
     }
 }

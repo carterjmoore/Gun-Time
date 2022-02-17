@@ -10,11 +10,14 @@ public class ShootableEnvironment : ShootableEntity
     protected override void Start()
     {
         base.Start();
-        reducing = true;
+        reducing = false;
     }
-    protected virtual void Update()
+    protected override void Update()
     {
-        if(timeStatus != 0 && !reducing)
+        base.Update();
+        Debug.Log(timeStatus);
+        Debug.Log(reducing);
+        if (timeStatus != 0 && !reducing)
         {
             //Start coroutine for reducing time status
             routine = StartCoroutine(ReduceTimeStatusAgain());
@@ -28,15 +31,15 @@ public class ShootableEnvironment : ShootableEntity
         if(timeStatus != 0)
         {
             //If timestatus is positive, reduce it by one, if it is negative, increase it by one
-            timeStatus = timeStatus > 0 ? timeStatus-- : timeStatus++;
+            timeStatus = (timeStatus > 0) ? --timeStatus : ++timeStatus;
         }
         reducing = false;
     }
 
-    protected override void OnCollisionEnter(Collision collision)
+    protected override void OnTriggerEnter(Collider other)
     {
-        base.OnCollisionEnter(collision);
-        if ((collision.gameObject.CompareTag("Slow") || collision.gameObject.CompareTag("Speed")) && routine != null)
+        base.OnTriggerEnter(other);
+        if ((other.gameObject.CompareTag("Slow") || other.gameObject.CompareTag("Speed")) && routine != null)
         {
             StopCoroutine(routine);
             reducing = false;

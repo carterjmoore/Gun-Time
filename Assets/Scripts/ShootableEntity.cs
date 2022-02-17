@@ -15,13 +15,25 @@ public class ShootableEntity : MonoBehaviour
         maxStatus = 3;
     }
 
-    protected virtual void OnCollisionEnter(Collision collision)
+    protected virtual void Update()
     {
-        if (collision.gameObject.CompareTag("Slow"))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             gotSlowed();
         }
-        if (collision.gameObject.CompareTag("Speed"))
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            gotSpeed();
+        }
+    }
+
+    protected virtual void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Slow"))
+        {
+            gotSlowed();
+        }
+        if (other.gameObject.CompareTag("Speed"))
         {
             gotSpeed();
         }
