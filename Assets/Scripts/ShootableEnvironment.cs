@@ -36,13 +36,17 @@ public class ShootableEnvironment : ShootableEntity
         reducing = false;
     }
 
-    protected override void OnTriggerEnter(Collider other)
+    protected override void gotSlowed()
     {
-        base.OnTriggerEnter(other);
-        if ((other.gameObject.CompareTag("Slow") || other.gameObject.CompareTag("Speed")) && routine != null)
-        {
-            StopCoroutine(routine);
-            reducing = false;
-        }
+        base.gotSlowed();
+        StopCoroutine(routine);
+        reducing = false;
+    }
+
+    protected override void gotSpeed()
+    {
+        base.gotSpeed();
+        StopCoroutine(routine);
+        reducing = false;
     }
 }

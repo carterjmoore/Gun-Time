@@ -47,12 +47,12 @@ public class ShootableEntity : MonoBehaviour
         return Mathf.Pow(2, timeStatus);
     }
 
-    void gotSlowed()
+    protected virtual void gotSlowed()
     {
         timeStatus = Mathf.Max(timeStatus - 1, -maxStatus);
     }
 
-    void gotSpeed()
+    protected virtual void gotSpeed()
     {
         timeStatus = Mathf.Min(timeStatus + 1, maxStatus);
     }

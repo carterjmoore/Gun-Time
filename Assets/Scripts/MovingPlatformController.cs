@@ -22,10 +22,8 @@ public class MovingPlatformController : ShootableEnvironment
         fraction = 0;
     }
 
-    // Update is called once per frame
-    protected override void Update()
+    void FixedUpdate()
     {
-        base.Update();
         if(!movingBack)
         {
             fraction += speed / distance * timeMultiplier() * Time.deltaTime;
@@ -57,6 +55,8 @@ public class MovingPlatformController : ShootableEnvironment
         if (other.gameObject.CompareTag("Player"))
         {
             other.transform.parent.parent.parent = null;
+            Rigidbody rb = other.GetComponent<Rigidbody>();
+            rb.velocity = rb.velocity.normalized * speed * timeMultiplier();
         }
     }
 }
