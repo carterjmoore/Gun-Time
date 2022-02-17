@@ -45,8 +45,7 @@ public class MovingPlatformController : ShootableEnvironment
         base.OnTriggerEnter(other);
         if (other.gameObject.CompareTag("Player"))
         {
-            //Get parent 3 times because the collider is on the Capsule, which is 2 levels below the Player object
-            other.transform.parent.parent.parent = transform;
+            other.transform.parent = transform;
         }
     }
 
@@ -54,9 +53,7 @@ public class MovingPlatformController : ShootableEnvironment
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.transform.parent.parent.parent = null;
-            Rigidbody rb = other.GetComponent<Rigidbody>();
-            rb.velocity = rb.velocity.normalized * speed * timeMultiplier();
+            other.transform.parent = null;
         }
     }
 }

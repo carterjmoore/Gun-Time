@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         //Check if the player is touching the ground
-        isGrounded = Physics.CheckSphere(transform.position - new Vector3(0, 0.6f, 0), groundDistance, groundMask);
+        isGrounded = Physics.CheckSphere(transform.position - new Vector3(0, 0.1f, 0), groundDistance, groundMask);
 
         handleInput();
         //Keep setting drag to make sure the player doesn't slide with normal movement
