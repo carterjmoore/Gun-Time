@@ -15,8 +15,6 @@ public class ShootableEnvironment : ShootableEntity
     protected override void Update()
     {
         base.Update();
-        Debug.Log(timeStatus);
-        Debug.Log(reducing);
         if (timeStatus != 0 && !reducing)
         {
             //Start coroutine for reducing time status
