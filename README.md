@@ -1,6 +1,6 @@
 # Gun Time
 
-FPS puzzle game made in an Intro to Video Game Development class.
+FPS puzzle game made for an Intro to Video Game Development class.
 
 ## Contributors
 Carter Moore\
