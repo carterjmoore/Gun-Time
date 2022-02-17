@@ -3,9 +3,9 @@
 FPS puzzle game made in an Intro to Video Game Development class.
 
 ## Contributors
-Carter Moore\
-Brilliant Ninh Doan Nguyen\
-Samuel Christopher Bain
+Carter Moore
+Brilliant Ninh Doan Nguyen
+Samuel Bain
 
 # Development Process Workflow
 
