@@ -1,4 +1,4 @@
-# CS2053 Project
+# Gun Time
 
 FPS puzzle game made in an Intro to Video Game Development class.
 
