@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Smoothly lerps between pos1 and pos2
+//pos2 can be defined in the unity editor, and pos1 is where the platform is on Start()
 public class MovingPlatformController : ShootableEnvironment
 {
     public float speed = 6f;
 
     Vector3 pos1;
-    Vector3 pos2;
+    public Vector3 pos2;
+
     float distance;
     float fraction;
     bool movingBack;
@@ -16,7 +19,6 @@ public class MovingPlatformController : ShootableEnvironment
     {
         base.Start();
         pos1 = transform.position;
-        pos2 = new Vector3(pos1.x + 20f, pos1.y, pos1.z);
         distance = Vector3.Distance(pos1, pos2);
         movingBack = false;
         fraction = 0;
