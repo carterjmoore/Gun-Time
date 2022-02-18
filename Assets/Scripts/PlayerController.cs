@@ -155,6 +155,8 @@ public class PlayerController : MonoBehaviour
         isDead = true;
         dying = true;
         GetComponent<CameraController>().TriggerDeath();
+        //Stop movement after death
+        rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
     public bool IsDead(){ return isDead; }

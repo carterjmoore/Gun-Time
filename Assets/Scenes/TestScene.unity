@@ -982,6 +982,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5013216266162485823}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1361998123 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5013216267524197140, guid: 6a9360704cdcba546867dfc2008dd2d5,
+    type: 3}
+  m_PrefabInstance: {fileID: 5013216266162485823}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361998120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb8fa6462fab02e48b747866b2226f65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1556323200
 GameObject:
   m_ObjectHideFlags: 0
@@ -1087,6 +1099,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1361998120}
+    - target: {fileID: 3540418510842471512, guid: 933c240d8f1ed1d43becbd886f02cae5,
+        type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1361998123}
     - target: {fileID: 3540418510842471514, guid: 933c240d8f1ed1d43becbd886f02cae5,
         type: 3}
       propertyPath: m_Name
@@ -1422,7 +1439,7 @@ PrefabInstance:
     - target: {fileID: 5013216267524197140, guid: 6a9360704cdcba546867dfc2008dd2d5,
         type: 3}
       propertyPath: speed
-      value: 12
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5013216267524197142, guid: 6a9360704cdcba546867dfc2008dd2d5,
         type: 3}
