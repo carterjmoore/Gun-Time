@@ -8,26 +8,33 @@ public class CameraController : MonoBehaviour
 {
     public float sensitivity = 100f;
 
-    [SerializeField] private Transform cam;
-    [SerializeField] private Transform orientation;
+    [SerializeField] Transform cam;
+    [SerializeField] Transform orientation;
 
-    private float mouseX;
-    private float mouseY;
+    float mouseX;
+    float mouseY;
 
-    private float multiplier = 0.01f;
+    float multiplier = 0.01f;
 
-    private float xRotation;
-    private float yRotation;
+    float xRotation;
+    float yRotation;
+
+    bool isDead;
 
     private void Start()
     {
         //Hide cursor and lock it to center
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        isDead = false;
     }
 
     private void Update()
     {
+        //If dead, player can't control camera anymore
+        if (isDead) return;
+        
         handleInput();
 
         //For vertical rotation, rotate the camera
@@ -47,5 +54,9 @@ public class CameraController : MonoBehaviour
 
         //Clamp our vertical cam movement so it can't look farther than straight up or down.
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+    }
+
+    public void TriggerDeath() {
+        isDead = true;
     }
 }

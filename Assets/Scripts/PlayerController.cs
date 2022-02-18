@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 //Inspiration for movement controls from the following tutorial series: https://www.youtube.com/watch?v=LqnPeqoJRFY
 //Modified by Carter Moore
 public class PlayerController : MonoBehaviour
 {
-    private float playerHeight = 2f;
+    float playerHeight = 2f;
 
     [Header("Movement")]
     public float speed = 6f;
@@ -18,21 +19,24 @@ public class PlayerController : MonoBehaviour
     public float groundDrag = 6f;
     public float airDrag = 2f;
 
-    private float horizontalMovement;
-    private float verticalMovement;
+    float horizontalMovement;
+    float verticalMovement;
 
     [Header("Ground Detection")]
     [SerializeField] LayerMask groundMask;
-    private bool isGrounded;
-    private float groundDistance = 0.45f;
+    bool isGrounded;
+    float groundDistance = 0.45f;
+
+    [Header("Ground Detection")]
 
     RaycastHit slopeHit;
     Vector3 slopeMoveDirection;
-    
+    Vector3 moveDirection;
 
-    private Vector3 moveDirection;
+    bool isDead;
+    bool dying;
 
-    private Rigidbody rb;
+    Rigidbody rb;
     [SerializeField] Transform orientation;
 
     private void Start()
@@ -40,10 +44,24 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         //Make sure player doesn't spin from forces
         rb.freezeRotation = true;
+        isDead = false;
+        dying = false;
     }
 
     private void Update()
     {
+        if (isDead)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+            if (dying)
+            {
+
+            }
+            return;
+        }
         //Check if the player is touching the ground
         isGrounded = Physics.CheckSphere(transform.position - new Vector3(0, 1.1f, 0), groundDistance, groundMask);
 
@@ -130,4 +148,16 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
+
+    //Handle player death
+    public void TriggerDeath()
+    {
+        isDead = true;
+        dying = true;
+        GetComponent<CameraController>().TriggerDeath();
+        //Stop movement after death
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    public bool IsDead(){ return isDead; }
 }
