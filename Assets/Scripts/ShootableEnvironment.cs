@@ -37,14 +37,14 @@ public class ShootableEnvironment : ShootableEntity
     protected override void gotSlowed()
     {
         base.gotSlowed();
-        StopCoroutine(routine);
+        if(routine!= null) StopCoroutine(routine);
         reducing = false;
     }
 
     protected override void gotSpeed()
     {
         base.gotSpeed();
-        StopCoroutine(routine);
+        if (routine != null) StopCoroutine(routine);
         reducing = false;
     }
 }
