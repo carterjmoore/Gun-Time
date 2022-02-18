@@ -7,6 +7,7 @@ public class ChaserController : ShootableEntity
     public float speed = 8f;
     public GameObject player;
 
+    PlayerController playerController;
     Rigidbody rb;
     Vector3 targetPos;
     Vector3 playerPosRightAfterLostLOS; //Store the player pos a fraction of a second after they leave LOS, to improve chasing
@@ -18,6 +19,7 @@ public class ChaserController : ShootableEntity
     protected override void Start()
     {
         base.Start();
+        playerController = player.GetComponent<PlayerController>();
         rb = transform.GetComponent<Rigidbody>();
         targetPos = transform.position;
         playerPosRightAfterLostLOS = targetPos;
@@ -42,7 +44,12 @@ public class ChaserController : ShootableEntity
             StartCoroutine(setPlayerPosRightAfterLostLOS());
             haveAdjustedTarget = true;
         }
-        moveToTarget();
+
+        //If player is not dead, move to target
+        if (!playerController.IsDead())
+        {
+            moveToTarget();
+        }
     }
 
     void moveToTarget()
@@ -56,7 +63,6 @@ public class ChaserController : ShootableEntity
                 transform.position = targetPos;
             }
 
-            Debug.Log("in here");
             //If just reached last seen player pos, now move toward pos of player slightly after lost LOS for improved chasing
             if(targetPos != playerPosRightAfterLostLOS)
             {
@@ -66,15 +72,11 @@ public class ChaserController : ShootableEntity
             else
             {
                 reachedTarget = true;
-                Debug.Log("Trans: "+transform.position);
             }
         }
         //If not within tolerance, set velocity towards target
         else
         {
-            Debug.Log(targetPos);
-            Debug.Log(transform.position);
-            Debug.Log(checkIfWithinTolerance());
             reachedTarget = false;
             rb.velocity = new Vector3(getTargetDir().x * speed * timeMultiplier(), rb.velocity.y, getTargetDir().z * speed * timeMultiplier());
         }
@@ -114,6 +116,13 @@ public class ChaserController : ShootableEntity
     {
         yield return new WaitForSecondsRealtime(0.5f);
         playerPosRightAfterLostLOS = player.transform.position;
-        Debug.Log("Lost LOS: "+playerPosRightAfterLostLOS);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject == player)
+        {
+            playerController.TriggerDeath();
+        }
     }
 }
