@@ -9,6 +9,7 @@ public class ChaserController : ShootableEntity
 
     Rigidbody rb;
     Vector3 targetPos;
+    Vector3 playerPosRightAfterLostLOS; //Store the player pos a fraction of a second after they leave LOS, to improve chasing
     float distanceTolerance;
 
     bool reachedTarget;
@@ -19,6 +20,7 @@ public class ChaserController : ShootableEntity
         base.Start();
         rb = transform.GetComponent<Rigidbody>();
         targetPos = transform.position;
+        playerPosRightAfterLostLOS = targetPos;
         distanceTolerance = 0.1f;
         reachedTarget = true;
         haveAdjustedTarget = true;
@@ -36,7 +38,8 @@ public class ChaserController : ShootableEntity
         //If just lost sight of player, set targetPos to slightly ahead of its current position, to make sure chaser gets around corner
         else if (!haveAdjustedTarget)
         {
-            targetPos += getTargetDir() * 0.5f;
+            targetPos += getTargetDir() * 1f;
+            StartCoroutine(setPlayerPosRightAfterLostLOS());
             haveAdjustedTarget = true;
         }
         moveToTarget();
@@ -44,15 +47,34 @@ public class ChaserController : ShootableEntity
 
     void moveToTarget()
     {
-        //If hasn't yet reached target, and is within the tolerance, snap to target
-        if (distanceTolerance * distanceTolerance > Vector3.Distance(transform.position, targetPos) && !reachedTarget)
+        //If within the tolerance
+        if (checkIfWithinTolerance())
         {
-            transform.position = targetPos;
-            reachedTarget = true;
+            //If haven't reached target, snap to target
+            if (!reachedTarget)
+            {
+                transform.position = targetPos;
+            }
+
+            Debug.Log("in here");
+            //If just reached last seen player pos, now move toward pos of player slightly after lost LOS for improved chasing
+            if(targetPos != playerPosRightAfterLostLOS)
+            {
+                targetPos = playerPosRightAfterLostLOS;
+            }
+            //Otherwise, stop chasing
+            else
+            {
+                reachedTarget = true;
+                Debug.Log("Trans: "+transform.position);
+            }
         }
         //If not within tolerance, set velocity towards target
         else
         {
+            Debug.Log(targetPos);
+            Debug.Log(transform.position);
+            Debug.Log(checkIfWithinTolerance());
             reachedTarget = false;
             rb.velocity = new Vector3(getTargetDir().x * speed * timeMultiplier(), rb.velocity.y, getTargetDir().z * speed * timeMultiplier());
         }
@@ -78,5 +100,20 @@ public class ChaserController : ShootableEntity
     Vector3 getTargetDir()
     {
         return (targetPos - transform.position).normalized;
+    }
+
+    bool checkIfWithinTolerance()
+    {
+        //Ignore Y coordinate for distance checking
+        Vector2 thisPosNoY = new Vector2(transform.position.x, transform.position.z);
+        Vector2 targetPosNoY = new Vector2(targetPos.x, targetPos.z);
+        return distanceTolerance > Vector2.Distance(thisPosNoY, targetPosNoY);
+    }
+
+    IEnumerator setPlayerPosRightAfterLostLOS()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
+        playerPosRightAfterLostLOS = player.transform.position;
+        Debug.Log("Lost LOS: "+playerPosRightAfterLostLOS);
     }
 }
