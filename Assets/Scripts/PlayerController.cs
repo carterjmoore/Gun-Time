@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 6f;
     public float movementMultiplier = 10f;
     public float airMultiplier = 0.4f;
-    public float jumpForce = 6.75f;
+    public float jumpForce = 10.0f;
     [Header("Drag")]
     public float groundDrag = 6f;
     public float airDrag = 2f;
@@ -160,4 +160,12 @@ public class PlayerController : MonoBehaviour
     }
 
     public bool IsDead(){ return isDead; }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Slow"))
+        {
+            TriggerDeath();
+        }
+    }
 }

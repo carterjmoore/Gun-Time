@@ -122,7 +122,6 @@ public class ChaserController : ShootableEntity
     {
         if(collision.gameObject == player)
         {
-            playerController.TriggerDeath();
         }
     }
 }
