@@ -8,7 +8,7 @@ public class ShooterController : ShootableEntity
     public float fireRate = 2f;
     public GameObject player;
     public GameObject projectileType;
-    public float projectileSpeed = 20f;
+    public float projectileSpeed = 2f;
     public float projectileSpread = 2f;
 
     PlayerController playerController;
@@ -58,15 +58,22 @@ public class ShooterController : ShootableEntity
         {
             GameObject firedProjectile = Instantiate(projectileType, transform.position, Quaternion.identity);
             Physics.IgnoreCollision(firedProjectile.GetComponent<Collider>(), GetComponent<Collider>());
-            Rigidbody rbP = firedProjectile.GetComponent<Rigidbody>();
+            
+            //Rigidbody rbP = firedProjectile.GetComponent<Rigidbody>();
 
+            /*
             float projectileRSpread = Random.Range(-projectileSpread * 0.5f, projectileSpread * 0.5f);
             float projectileUSpread = Random.Range(-projectileSpread * 0.5f, projectileSpread * 0.5f);
+            */
 
+            //note that this is currenly hardcoded for FAST bullet in the component reference
+            firedProjectile.GetComponent<FastBulletController>().InitProjectile(transform.position + transform.forward * projectileSpeed, transform.forward * 4f);
+
+            /*
             rbP.AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);
             rbP.AddForce(transform.right * projectileRSpread, ForceMode.Impulse);
             rbP.AddForce(transform.up * projectileUSpread, ForceMode.Impulse);
-
+            */
             alreadyAttacked = true;
 
             if (timeMultiplier() != 0)

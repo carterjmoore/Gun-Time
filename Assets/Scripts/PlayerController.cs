@@ -35,9 +35,15 @@ public class PlayerController : MonoBehaviour
 
     bool isDead;
     bool dying;
+    bool canFire; //can the player fire
 
     Rigidbody rb;
     [SerializeField] Transform orientation;
+
+    public GameObject SpeedBullet;
+    public GameObject SlowBullet;
+
+    public GameObject Camera;
 
     private void Start()
     {
@@ -46,6 +52,7 @@ public class PlayerController : MonoBehaviour
         rb.freezeRotation = true;
         isDead = false;
         dying = false;
+        canFire = true;
     }
 
     private void Update()
@@ -90,6 +97,30 @@ public class PlayerController : MonoBehaviour
 
         //Use orientation.forward and orientation.right so direction is relative to direction player is facing
         moveDirection = orientation.forward * verticalMovement + orientation.right * horizontalMovement;
+
+
+        //fire speed bullet
+        if(Input.GetButtonDown("Fire1") && canFire)
+        {
+            GameObject b = Instantiate(SpeedBullet, new Vector3(0f, 0f, 0f), Quaternion.identity);
+
+            //offset it, then give initial velocity (the second argument of the initprojectile is the speed)
+            b.GetComponent<FastBulletController>().InitProjectile(transform.position + Camera.transform.forward*2.0f, Camera.transform.forward*4f);
+            StartCoroutine(PlayerCanFireAgain());
+            canFire = false;
+
+        }
+
+        //fire slow bullet
+        if (Input.GetButtonDown("Fire2") && canFire)
+        {
+            GameObject b = Instantiate(SlowBullet, new Vector3(0f, 0f, 0f), Quaternion.identity);
+
+            b.GetComponent<SlowBulletController>().InitProjectile(transform.position + Camera.transform.forward * 2.0f, Camera.transform.forward * 4f);
+            StartCoroutine(PlayerCanFireAgain());
+            canFire = false;
+
+        }
     }
 
     //Control drag for in-air vs on-ground movement
@@ -168,4 +199,12 @@ public class PlayerController : MonoBehaviour
             TriggerDeath();
         }
     }
+
+    IEnumerator PlayerCanFireAgain()
+    {
+        //this will pause the execution of this method for 1 seconds without blocking
+        yield return new WaitForSecondsRealtime(1);
+        canFire = true;
+    }
+
 }

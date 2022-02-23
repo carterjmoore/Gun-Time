@@ -10,11 +10,13 @@ public class ChaserController : ShootableEntity
     PlayerController playerController;
     Rigidbody rb;
     Vector3 targetPos;
+    Vector3 temp;
     Vector3 playerPosRightAfterLostLOS; //Store the player pos a fraction of a second after they leave LOS, to improve chasing
     float distanceTolerance;
 
     bool reachedTarget;
     bool haveAdjustedTarget;
+
 
     protected override void Start()
     {
@@ -26,6 +28,7 @@ public class ChaserController : ShootableEntity
         distanceTolerance = 0.1f;
         reachedTarget = true;
         haveAdjustedTarget = true;
+
     }
 
     void FixedUpdate()
@@ -78,7 +81,9 @@ public class ChaserController : ShootableEntity
         else
         {
             reachedTarget = false;
+
             rb.velocity = new Vector3(getTargetDir().x * speed * timeMultiplier(), rb.velocity.y, getTargetDir().z * speed * timeMultiplier());
+           
         }
     }
 
@@ -124,4 +129,6 @@ public class ChaserController : ShootableEntity
         {
         }
     }
+
+
 }
