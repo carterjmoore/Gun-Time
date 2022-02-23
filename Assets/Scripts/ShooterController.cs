@@ -66,8 +66,8 @@ public class ShooterController : ShootableEntity
             float projectileUSpread = Random.Range(-projectileSpread * 0.5f, projectileSpread * 0.5f);
             */
 
-            //note that this is currenly hardcoded for FAST bullet in the component reference
-            firedProjectile.GetComponent<FastBulletController>().InitProjectile(transform.position + transform.forward * projectileSpeed, transform.forward * 4f);
+            //note that this is currenly hardcoded for KILL bullet in the component reference
+            firedProjectile.GetComponent<KillBulletController>().InitProjectile(transform.position, transform.forward * 4f);
 
             /*
             rbP.AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);

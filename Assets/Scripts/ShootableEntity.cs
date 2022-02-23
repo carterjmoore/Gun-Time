@@ -32,10 +32,12 @@ public class ShootableEntity : MonoBehaviour
         if (other.gameObject.CompareTag("Slow"))
         {
             gotSlowed();
+            Destroy(other.gameObject);
         }
         if (other.gameObject.CompareTag("Speed"))
         {
             gotSpeed();
+            Destroy(other.gameObject);
         }
     }
 
