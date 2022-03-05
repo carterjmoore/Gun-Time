@@ -13,11 +13,7 @@ public class ShooterController : ShootableEntity
 
     PlayerController playerController;
     Rigidbody rb;
-    Vector3 targetPos;
-    Vector3 playerPosRightAfterLostLOS; //Store the player pos a fraction of a second after they leave LOS, to improve chasing
-    float distanceTolerance;
 
-    bool haveAdjustedTarget;
     bool alreadyAttacked;
 
     protected override void Start()
@@ -25,30 +21,16 @@ public class ShooterController : ShootableEntity
         base.Start();
         playerController = player.GetComponent<PlayerController>();
         rb = transform.GetComponent<Rigidbody>();
-        targetPos = transform.position;
-        playerPosRightAfterLostLOS = targetPos;
-        haveAdjustedTarget = true;
         alreadyAttacked = false;
     }
 
     void FixedUpdate()
     {
-        //If just lost sight of player, set targetPos to slightly ahead of its current position, to make sure chaser gets around corner
-        if (!haveAdjustedTarget)
-        {
-            targetPos += getTargetDir() * 1f;
-            StartCoroutine(setPlayerPosRightAfterLostLOS());
-            haveAdjustedTarget = true;
-        }
-
         //Check if player is dead and if the player is visible
         if (!playerController.IsDead() && playerVisible())
         {
             transform.LookAt(new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z));
-            targetPos = player.transform.position;
-            haveAdjustedTarget = false;
             shooterShoot();
-            rb.velocity = Vector3.zero;
         }
     }
 
@@ -67,7 +49,7 @@ public class ShooterController : ShootableEntity
             */
 
             //note that this is currenly hardcoded for KILL bullet in the component reference
-            firedProjectile.GetComponent<KillBulletController>().InitProjectile(transform.position, transform.forward * 4f);
+            firedProjectile.GetComponent<KillBulletController>().InitProjectile(transform.position + transform.forward*0.5f, transform.forward * 4f);
 
             /*
             rbP.AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);
@@ -104,29 +86,5 @@ public class ShooterController : ShootableEntity
             }
         }
         return false;
-    }
-
-    Vector3 getTargetDir()
-    {
-        return (targetPos - transform.position).normalized;
-    }
-
-    bool checkIfWithinTolerance()
-    {
-        //Ignore Y coordinate for distance checking
-        Vector2 thisPosNoY = new Vector2(transform.position.x, transform.position.z);
-        Vector2 targetPosNoY = new Vector2(targetPos.x, targetPos.z);
-        return distanceTolerance > Vector2.Distance(thisPosNoY, targetPosNoY);
-    }
-
-    IEnumerator setPlayerPosRightAfterLostLOS()
-    {
-        yield return new WaitForSecondsRealtime(0.5f);
-        playerPosRightAfterLostLOS = player.transform.position;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        rb.velocity = Vector3.zero;
     }
 }
