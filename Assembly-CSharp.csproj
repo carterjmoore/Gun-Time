@@ -56,6 +56,7 @@
     <Compile Include="Assets\Scripts\BulletController.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\ChaserController.cs" />
+    <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\KillBulletController.cs" />
     <Compile Include="Assets\Scripts\LauncherController.cs" />
     <Compile Include="Assets\Scripts\MoveCamera.cs" />

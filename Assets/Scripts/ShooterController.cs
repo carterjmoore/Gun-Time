@@ -10,6 +10,7 @@ public class ShooterController : ShootableEntity
     public GameObject projectileType;
     public float projectileSpeed = 2f;
     public float projectileSpread = 2f;
+    public GameController gameController;
 
     PlayerController playerController;
     Rigidbody rb;
@@ -26,6 +27,11 @@ public class ShooterController : ShootableEntity
 
     void FixedUpdate()
     {
+        if (!gameController.shootersEnabled())
+        {
+            return;
+        }
+
         //Check if player is dead and if the player is visible
         if (!playerController.IsDead() && playerVisible())
         {

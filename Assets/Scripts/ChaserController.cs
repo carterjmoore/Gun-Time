@@ -10,6 +10,7 @@ public class ChaserController : ShootableEntity
     public float groundDrag = 6f;
     public float airDrag = 1.5f;
     public GameObject player;
+    public GameController gameController;
 
     float chaserHeight = 1f;
     bool isGrounded;
@@ -40,6 +41,11 @@ public class ChaserController : ShootableEntity
 
     void FixedUpdate()
     {
+        if (!gameController.chasersEnabled())
+        {
+            return;
+        }
+
         isGrounded = Physics.CheckSphere(transform.position - new Vector3(0, 1.1f, 0), groundDistance);
         setDrag();
 

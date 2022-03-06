@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
 {
     float playerHeight = 2f;
 
+    public GameController gameController;
+
     [Header("Movement")]
     public float speed = 6f;
     public float movementMultiplier = 10f;
@@ -183,6 +185,7 @@ public class PlayerController : MonoBehaviour
     //Handle player death
     public void TriggerDeath()
     {
+        if (gameController.invincible()) return;
         Debug.Log("You Died!");
         isDead = true;
         dying = true;
