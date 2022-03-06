@@ -7,9 +7,12 @@ public class LauncherController : ShootableEnvironment
 {
     public float speed = 6f;
     public float launchForce = 10f;
+    public float waitTime = 3f;
+    [SerializeField] bool isVertical = true;
+    [SerializeField] bool alwaysLaunch = false; //By default, we only launch when timeMultiplier > 1
 
     Vector3 pos1;
-    public Vector3 pos2;
+    Vector3 pos2;
 
     float distance;
     float fraction;
@@ -17,19 +20,23 @@ public class LauncherController : ShootableEnvironment
     bool waitingToGoBack;
     bool waitingToGoForward;
     bool launch;
+    bool walkOffLaunchDelay;
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         pos1 = transform.position;
+        pos2 = pos1 + transform.up * 5;
         distance = Vector3.Distance(pos1, pos2);
         movingBack = false;
         waitingToGoBack = false;
         waitingToGoForward = false;
         launch = false;
+        walkOffLaunchDelay = false;
         fraction = 0;
     }
 
+    //Lerp between two positions, but pause upon arriving at destination
     void FixedUpdate()
     {
         if (!movingBack && !waitingToGoForward)
@@ -59,53 +66,75 @@ public class LauncherController : ShootableEnvironment
     IEnumerator waitToGoBack()
     {
         waitingToGoBack = true;
+
+        //At the instant the top position is reached, enable launch
         launch = true;
         yield return new WaitForSecondsRealtime(0.01f);
         launch = false;
-        yield return new WaitForSecondsRealtime(3f / timeMultiplier());
+
+
+        yield return new WaitForSecondsRealtime(waitTime / timeMultiplier());
         waitingToGoBack = false;
     }
 
     IEnumerator waitToGoForward()
     {
         waitingToGoForward = true;
-        yield return new WaitForSecondsRealtime(3f / timeMultiplier());
+        yield return new WaitForSecondsRealtime(waitTime / timeMultiplier());
         waitingToGoForward = false;
     }
 
-    private void OnCollisionStay(Collision collision)
+    //Make sure OnTriggerExit launch doesn't get appplied multiple times at once
+    IEnumerator delayWalkOffLaunch()
     {
-        if (launch && timeMultiplier() > 1)
-        {
-            Debug.Log("Launch");
-            collision.transform.parent = null;
-            collision.rigidbody.AddExplosionForce(timeMultiplier() * launchForce, collision.contacts[0].point, 5);
-            launch = false;
-        }
+        walkOffLaunchDelay = true;
+        yield return new WaitForSecondsRealtime(0.1f);
+        walkOffLaunchDelay = false;
     }
 
-    private void OnCollisionExit(Collision collision)
+    //Launch the player if they leave the launcher while it's going up
+    private void OnTriggerExit(Collider other)
     {
-        if (!movingBack)
+        //Instead of comparing tag with player, this should 
+        if (!movingBack && !waitingToGoForward && fastEnoughToLaunch() && !launch && !walkOffLaunchDelay && other.attachedRigidbody)
         {
+            StartCoroutine(delayWalkOffLaunch());
+            Launch(other);
+        }
+        other.transform.parent = null;
+    }
 
+    //Launch the player if they're on the launcher when it reaches the top
+    private void OnTriggerStay(Collider other)
+    {
+        if (launch && fastEnoughToLaunch() && other.attachedRigidbody)
+        {
+            Launch(other);
         }
     }
 
     protected override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
-        if (other.gameObject.CompareTag("Player"))
+        if (other.attachedRigidbody && isVertical)
         {
             other.transform.parent = transform;
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    //Laucnch player in direction of transform.up
+    void Launch(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            other.transform.parent = null;
-        }
+        Debug.Log("Launch");
+        other.transform.parent = null;
+        Rigidbody rb = other.attachedRigidbody;
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.y);
+        other.attachedRigidbody.AddForce(transform.up * timeMultiplier() * launchForce, ForceMode.Impulse);
+        launch = false;
+    }
+
+    bool fastEnoughToLaunch()
+    {
+        return alwaysLaunch || timeMultiplier() > 1;
     }
 }

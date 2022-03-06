@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 381883949792665382}
   - component: {fileID: 381883949792665381}
   - component: {fileID: 381883949792665380}
+  - component: {fileID: 8878642296870670983}
   m_Layer: 0
   m_Name: SpinningPlatform
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 381883949792665403}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -33.47, y: 0.63, z: -9.07}
-  m_LocalScale: {x: 1, y: 1, z: 24.13}
+  m_LocalScale: {x: 1, y: 2, z: 20}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -106,3 +107,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6e84f464ed29949a7d2f260e3def0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &8878642296870670983
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381883949792665403}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2, y: 0.9, z: 0.99}
+  m_Center: {x: 0, y: 0, z: 0}

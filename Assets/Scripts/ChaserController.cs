@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class ChaserController : ShootableEntity
 {
-    public float speed = 8f;
+    public float speed = 5.9f;
+    public float movementMultiplier = 10f;
+    public float airMovementMultiplier = 0.4f;
+    public float groundDrag = 6f;
+    public float airDrag = 1.5f;
     public GameObject player;
+
+    float chaserHeight = 1f;
+    bool isGrounded;
+    float groundDistance = 0.45f;
 
     PlayerController playerController;
     Rigidbody rb;
     Vector3 targetPos;
-    Vector3 temp;
     Vector3 playerPosRightAfterLostLOS; //Store the player pos a fraction of a second after they leave LOS, to improve chasing
     float distanceTolerance;
+    RaycastHit slopeHit;
 
     bool reachedTarget;
     bool haveAdjustedTarget;
@@ -28,17 +36,28 @@ public class ChaserController : ShootableEntity
         distanceTolerance = 0.1f;
         reachedTarget = true;
         haveAdjustedTarget = true;
-
     }
 
     void FixedUpdate()
     {
+        isGrounded = Physics.CheckSphere(transform.position - new Vector3(0, 1.1f, 0), groundDistance);
+        setDrag();
+
         //If player is visible, look at player and set targetPos to player's pos
         if (playerVisible())
         {
-            transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.y));
+            //Look up ramp if going up ramp
+            if (onSlope())
+            {
+                transform.LookAt(Vector3.ProjectOnPlane(getTargetDir(), slopeHit.normal));
+            }
+            else
+            {
+                transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+            }
             targetPos = player.transform.position;
             haveAdjustedTarget = false;
+            moveAroundWalls();
         }
         //If just lost sight of player, set targetPos to slightly ahead of its current position, to make sure chaser gets around corner
         else if (!haveAdjustedTarget)
@@ -61,7 +80,7 @@ public class ChaserController : ShootableEntity
         if (checkIfWithinTolerance())
         {
             //If haven't reached target, snap to target
-            if (!reachedTarget)
+            if (!reachedTarget && !playerVisible())
             {
                 transform.position = targetPos;
             }
@@ -82,8 +101,33 @@ public class ChaserController : ShootableEntity
         {
             reachedTarget = false;
 
-            rb.velocity = new Vector3(getTargetDir().x * speed * timeMultiplier(), rb.velocity.y, getTargetDir().z * speed * timeMultiplier());
-           
+            //Leave this here in case we want to go back to directly setting velocity instead of applying force
+            //rb.velocity = new Vector3(getTargetDir().x * speed * timeMultiplier(), rb.velocity.y, getTargetDir().z * speed * timeMultiplier());
+
+            //If on slope, add force along slope. Otherwise, add force toward target
+            Vector3 moveDirection = onSlope() ? Vector3.ProjectOnPlane(getTargetDir(), slopeHit.normal) : getTargetDir();
+            float multiplier = isGrounded ? movementMultiplier : airMovementMultiplier;
+            rb.AddForce(speed * multiplier * moveDirection, ForceMode.Acceleration);
+            Debug.Log("Grounded: " + isGrounded);
+            Debug.Log("Slope: " + onSlope());
+        }
+    }
+
+    void moveAroundWalls()
+    {
+        Vector3 right = Vector3.Cross(transform.forward, transform.up).normalized;
+        Vector3 left = -right;
+        //If there is a wall diagonally to the right, avoid it
+        if (Physics.Raycast(transform.position, transform.forward + right, 1.5f))
+        {
+            Debug.Log("Avoiding wall");
+            rb.AddForce(left * speed * movementMultiplier / 2, ForceMode.Acceleration);
+        }
+        //If the is a wall diagonally to the left, avoid it
+        else if (Physics.Raycast(transform.position, transform.forward + left, 1.5f))
+        {
+            Debug.Log("Avoiding wall");
+            rb.AddForce(right * speed * movementMultiplier / 2, ForceMode.Acceleration);
         }
     }
 
@@ -92,7 +136,6 @@ public class ChaserController : ShootableEntity
     {
         //Raycast from chaser to player to check if player is visible
         RaycastHit hit;
-        Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.green);
         if (Physics.Raycast(transform.position, player.transform.position - transform.position, out hit, Mathf.Infinity))
         {
             //If raycast hits player before anything else, player is visible
@@ -106,7 +149,9 @@ public class ChaserController : ShootableEntity
 
     Vector3 getTargetDir()
     {
-        return (targetPos - transform.position).normalized;
+        Vector3 targetDir = (targetPos - transform.position);
+        targetDir.y = 0f; //We only want movement parallel to the ground
+        return targetDir.normalized;
     }
 
     bool checkIfWithinTolerance()
@@ -127,8 +172,42 @@ public class ChaserController : ShootableEntity
     {
         if(collision.gameObject == player)
         {
+            playerController.TriggerDeath();
         }
     }
 
+    //Check if the chaser is on a slope
+    bool onSlope()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, chaserHeight / 2 + 0.55f))
+        {
+            if (slopeHit.normal != Vector3.up)
+            {
+                return true;
+            }
+        }
 
+        //Also do a check if there is a slope in front. Since chaser is a cube, it struggles to initially get onto the slope
+        RaycastHit forwardHitCheck;
+        if (Physics.Raycast(transform.position - new Vector3(0f, chaserHeight/2+0.1f, 0f), transform.forward, out forwardHitCheck, 1.5f))
+        {
+            if(Vector3.Dot(forwardHitCheck.normal, Vector3.up) != 0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    void setDrag()
+    {
+        if (isGrounded)
+        {
+            rb.drag = groundDrag;
+        }
+        else
+        {
+            rb.drag = airDrag;
+        }
+    }
 }

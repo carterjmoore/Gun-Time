@@ -8,6 +8,7 @@ TagManager:
   - Speed
   - PhysEnemy
   - PhysObject
+  - Death
   layers:
   - Default
   - TransparentFX

@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
     }
 
     //Handles keyboard input from the player
-    private void handleInput()
+    void handleInput()
     {
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         verticalMovement = Input.GetAxisRaw("Vertical");
@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
     }
 
     //Control drag for in-air vs on-ground movement
-    private void setDrag()
+    void setDrag()
     {
         if (isGrounded)
         {
@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
     }
 
     //Handle moving the player
-    private void movePlayer()
+    void movePlayer()
     {
         if(isGrounded && !onSlope())
         {
@@ -157,14 +157,14 @@ public class PlayerController : MonoBehaviour
     }
 
     //Handles jumping
-    private void jump()
+    void jump()
     {
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 
     //Check if the player is on a slope
-    private bool onSlope()
+    bool onSlope()
     {
         if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight/2 + 0.55f))
         {
@@ -193,19 +193,10 @@ public class PlayerController : MonoBehaviour
 
     public bool IsDead(){ return isDead; }
 
-    public void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Slow"))
-        {
-            TriggerDeath();
-        }
-    }
-
     IEnumerator PlayerCanFireAgain()
     {
         //this will pause the execution of this method for 1 seconds without blocking
         yield return new WaitForSecondsRealtime(1);
         canFire = true;
     }
-
 }
