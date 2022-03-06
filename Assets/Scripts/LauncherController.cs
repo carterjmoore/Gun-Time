@@ -5,10 +5,13 @@ using UnityEngine;
 //pos2 can be defined in the unity editor, and pos1 is where the platform is on Start()
 public class LauncherController : ShootableEnvironment
 {
+    [Header("Launcher Controls")]
     public float speed = 6f;
+    public float lerpDistance = 5f;
     public float launchForce = 10f;
     public float waitTime = 3f;
-    [SerializeField] bool isVertical = true;
+    [Header("Other Options")]
+    [SerializeField] bool isVertical = true; //Turn on if launcher goes straight up and down
     [SerializeField] bool alwaysLaunch = false; //By default, we only launch when timeMultiplier > 1
 
     Vector3 pos1;
@@ -26,7 +29,7 @@ public class LauncherController : ShootableEnvironment
     {
         base.Start();
         pos1 = transform.position;
-        pos2 = pos1 + transform.up * 5;
+        pos2 = pos1 + transform.up * lerpDistance;
         distance = Vector3.Distance(pos1, pos2);
         movingBack = false;
         waitingToGoBack = false;
