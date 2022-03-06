@@ -125,7 +125,6 @@ public class LauncherController : ShootableEnvironment
     //Laucnch player in direction of transform.up
     void Launch(Collider other)
     {
-        Debug.Log("Launch");
         other.transform.parent = null;
         Rigidbody rb = other.attachedRigidbody;
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.y);

@@ -101,15 +101,10 @@ public class ChaserController : ShootableEntity
         {
             reachedTarget = false;
 
-            //Leave this here in case we want to go back to directly setting velocity instead of applying force
-            //rb.velocity = new Vector3(getTargetDir().x * speed * timeMultiplier(), rb.velocity.y, getTargetDir().z * speed * timeMultiplier());
-
             //If on slope, add force along slope. Otherwise, add force toward target
             Vector3 moveDirection = onSlope() ? Vector3.ProjectOnPlane(getTargetDir(), slopeHit.normal) : getTargetDir();
-            float multiplier = isGrounded ? movementMultiplier : airMovementMultiplier;
+            float multiplier = isGrounded ? movementMultiplier : movementMultiplier*airMovementMultiplier;
             rb.AddForce(speed * multiplier * moveDirection, ForceMode.Acceleration);
-            Debug.Log("Grounded: " + isGrounded);
-            Debug.Log("Slope: " + onSlope());
         }
     }
 
@@ -120,13 +115,11 @@ public class ChaserController : ShootableEntity
         //If there is a wall diagonally to the right, avoid it
         if (Physics.Raycast(transform.position, transform.forward + right, 1.5f))
         {
-            Debug.Log("Avoiding wall");
             rb.AddForce(left * speed * movementMultiplier / 2, ForceMode.Acceleration);
         }
         //If the is a wall diagonally to the left, avoid it
         else if (Physics.Raycast(transform.position, transform.forward + left, 1.5f))
         {
-            Debug.Log("Avoiding wall");
             rb.AddForce(right * speed * movementMultiplier / 2, ForceMode.Acceleration);
         }
     }

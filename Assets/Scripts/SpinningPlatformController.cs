@@ -34,8 +34,9 @@ public class SpinningPlatformController : ShootableEnvironment
     {
         if (collidedWithSide)
         {
-            Debug.Log("Bounce");
+            //This line was taken and modified from https://www.youtube.com/watch?time_continue=192&v=bdGn4J4HD_8&feature=emb_title
             collision.rigidbody.AddExplosionForce(knockbackForce * timeMultiplier(), collision.contacts[0].point, 5);
+
             collidedWithSide = false;
         }
     }
