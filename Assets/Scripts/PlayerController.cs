@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
     public float movementMultiplier = 10f;
     public float airMultiplier = 0.4f;
     public float jumpForce = 10.0f;
+    [Header("Shooting")]
+    public float bulletSpeed = 18f;
+    public float reloadTime = 1f;
     [Header("Drag")]
     public float groundDrag = 6f;
     public float airDrag = 2f;
@@ -29,8 +32,6 @@ public class PlayerController : MonoBehaviour
     bool isGrounded;
     float groundDistance = 0.45f;
 
-    [Header("Ground Detection")]
-
     RaycastHit slopeHit;
     Vector3 slopeMoveDirection;
     Vector3 moveDirection;
@@ -40,6 +41,8 @@ public class PlayerController : MonoBehaviour
     bool canFire; //can the player fire
 
     Rigidbody rb;
+
+    [Header("References")]
     [SerializeField] Transform orientation;
 
     public GameObject SpeedBullet;
@@ -102,26 +105,24 @@ public class PlayerController : MonoBehaviour
 
 
         //fire speed bullet
-        if(Input.GetButtonDown("Fire1") && canFire)
+        if(Input.GetButton("Fire1") && canFire)
         {
             GameObject b = Instantiate(SpeedBullet, new Vector3(0f, 0f, 0f), Quaternion.identity);
 
             //offset it, then give initial velocity (the second argument of the initprojectile is the speed)
-            b.GetComponent<BulletController>().InitProjectile(transform.position + Camera.transform.forward*2.0f, Camera.transform.forward*6f);
+            b.GetComponent<BulletController>().InitProjectile(transform.position + Camera.transform.forward*2.0f, Camera.transform.forward * bulletSpeed);
             StartCoroutine(PlayerCanFireAgain());
             canFire = false;
-
         }
 
         //fire slow bullet
-        if (Input.GetButtonDown("Fire2") && canFire)
+        if (Input.GetButton("Fire2") && canFire)
         {
             GameObject b = Instantiate(SlowBullet, new Vector3(0f, 0f, 0f), Quaternion.identity);
 
-            b.GetComponent<BulletController>().InitProjectile(transform.position + Camera.transform.forward * 2.0f, Camera.transform.forward * 6f);
+            b.GetComponent<BulletController>().InitProjectile(transform.position + Camera.transform.forward * 2.0f, Camera.transform.forward * bulletSpeed);
             StartCoroutine(PlayerCanFireAgain());
             canFire = false;
-
         }
     }
 
@@ -199,7 +200,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator PlayerCanFireAgain()
     {
         //this will pause the execution of this method for 1 seconds without blocking
-        yield return new WaitForSecondsRealtime(1);
+        yield return new WaitForSecondsRealtime(reloadTime);
         canFire = true;
     }
 }

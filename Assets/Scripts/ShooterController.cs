@@ -4,25 +4,28 @@ using UnityEngine;
 
 public class ShooterController : ShootableEntity
 {
-    public float speed = 8f;
-    public float fireRate = 2f;
-    public GameObject player;
-    public GameObject projectileType;
+
+    [Header("Shooting")]
+    public float reloadTime = 1f;
     public float projectileSpeed = 2f;
     public float projectileSpread = 2f;
+
+    [Header("References")]
+    public GameObject player;
+    public GameObject projectileType;
     public GameController gameController;
 
     PlayerController playerController;
     Rigidbody rb;
 
-    bool alreadyAttacked;
+    bool canAttack;
 
     protected override void Start()
     {
         base.Start();
         playerController = player.GetComponent<PlayerController>();
         rb = transform.GetComponent<Rigidbody>();
-        alreadyAttacked = false;
+        canAttack = true;
     }
 
     void FixedUpdate()
@@ -35,14 +38,14 @@ public class ShooterController : ShootableEntity
         //Check if player is dead and if the player is visible
         if (!playerController.IsDead() && playerVisible())
         {
-            transform.LookAt(new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z));
+            transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
             shooterShoot();
         }
     }
 
     private void shooterShoot()
     {
-        if (!alreadyAttacked)
+        if (canAttack && timeMultiplier() != 0)
         {
             GameObject firedProjectile = Instantiate(projectileType, transform.position, Quaternion.identity);
             Physics.IgnoreCollision(firedProjectile.GetComponent<Collider>(), GetComponent<Collider>());
@@ -55,26 +58,24 @@ public class ShooterController : ShootableEntity
             */
 
             //note that this is currenly hardcoded for KILL bullet in the component reference
-            firedProjectile.GetComponent<KillBulletController>().InitProjectile(transform.position + transform.forward*0.5f, transform.forward * 4f);
+            firedProjectile.GetComponent<KillBulletController>().InitProjectile(transform.position + transform.forward*0.5f, transform.forward * projectileSpeed);
 
             /*
             rbP.AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);
             rbP.AddForce(transform.right * projectileRSpread, ForceMode.Impulse);
             rbP.AddForce(transform.up * projectileUSpread, ForceMode.Impulse);
             */
-            alreadyAttacked = true;
+            canAttack = false;
 
-            if (timeMultiplier() != 0)
-            {
-                Invoke(nameof(ResetAttack),  fireRate / (timeMultiplier() * speed));
-                Destroy(firedProjectile, 10f);
-            }
+            StartCoroutine(ResetAttack());
+            Destroy(firedProjectile, 10f);
         }
     }
 
-    private void ResetAttack()
+    IEnumerator ResetAttack()
     {
-        alreadyAttacked = false;
+        yield return new WaitForSecondsRealtime(reloadTime / timeMultiplier());
+        canAttack = true;
     }
 
     //Check if player is visible to the enemy

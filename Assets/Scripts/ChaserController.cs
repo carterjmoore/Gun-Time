@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class ChaserController : ShootableEntity
 {
+
+    [Header("Movement")]
     public float speed = 5.9f;
     public float movementMultiplier = 10f;
     public float airMovementMultiplier = 0.4f;
     public float groundDrag = 6f;
     public float airDrag = 1.5f;
+
+    [Header("References")]
     public GameObject player;
     public GameController gameController;
 
@@ -110,7 +114,7 @@ public class ChaserController : ShootableEntity
             //If on slope, add force along slope. Otherwise, add force toward target
             Vector3 moveDirection = onSlope() ? Vector3.ProjectOnPlane(getTargetDir(), slopeHit.normal) : getTargetDir();
             float multiplier = isGrounded ? movementMultiplier : movementMultiplier*airMovementMultiplier;
-            rb.AddForce(speed * multiplier * moveDirection, ForceMode.Acceleration);
+            rb.AddForce(speed * multiplier * moveDirection * timeMultiplier(), ForceMode.Acceleration);
         }
     }
 

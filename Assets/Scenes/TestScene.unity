@@ -199,6 +199,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1554143735299792028, guid: 5b6b04599530be34e9d8f074f4c0bc12,
         type: 3}
+    - target: {fileID: 6940946366807585503, guid: 556258e0dd8e4b246844690300840bcf,
+        type: 3}
+      propertyPath: projectileSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6940946366807585508, guid: 556258e0dd8e4b246844690300840bcf,
         type: 3}
       propertyPath: m_UseGravity
@@ -1904,6 +1909,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3554633590014631749, guid: af5d4b7fa367b3543ad52ac2518c2830,
         type: 3}
+    - target: {fileID: 5013216267524197140, guid: 6a9360704cdcba546867dfc2008dd2d5,
+        type: 3}
+      propertyPath: bulletSpeed
+      value: 24
+      objectReference: {fileID: 0}
     - target: {fileID: 5013216267524197140, guid: 6a9360704cdcba546867dfc2008dd2d5,
         type: 3}
       propertyPath: airMultiplier
