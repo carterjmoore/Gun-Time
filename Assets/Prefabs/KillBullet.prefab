@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1554143735299792003}
   m_Layer: 0
   m_Name: KillBullet
-  m_TagString: Untagged
+  m_TagString: Death
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,7 +107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fbe4d8cafe21a4a84cf8a709fd832e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
   velocity: {x: 0, y: 0, z: 0}
 --- !u!54 &1554143735299792003
 Rigidbody:
