@@ -45,7 +45,7 @@ public class MovingPlatformController : ShootableEnvironment
     protected override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
-        if (other.gameObject.CompareTag("Player"))
+        if (other.attachedRigidbody)
         {
             other.transform.parent = transform;
         }
@@ -53,7 +53,7 @@ public class MovingPlatformController : ShootableEnvironment
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.attachedRigidbody)
         {
             other.transform.parent = null;
         }

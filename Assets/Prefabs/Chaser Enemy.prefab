@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3540418510842471512}
   m_Layer: 0
   m_Name: Chaser Enemy
-  m_TagString: Untagged
+  m_TagString: PhysEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,5 +123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2175f085ff82f3479d476f4a5355131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 5.9
+  movementMultiplier: 10
+  airMovementMultiplier: 0.4
+  groundDrag: 6
+  airDrag: 1.5
   player: {fileID: 0}

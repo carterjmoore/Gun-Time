@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Slow
   - Speed
+  - PhysEnemy
+  - PhysObject
+  - Death
   layers:
   - Default
   - TransparentFX

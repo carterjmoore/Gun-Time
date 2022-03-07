@@ -331,14 +331,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   movementMultiplier: 10
-  airMultiplier: 0.4
-  jumpForce: 13.5
+  airMultiplier: 0.3
+  jumpForce: 11
   groundDrag: 6
-  airDrag: 2
+  airDrag: 1.5
   groundMask:
     serializedVersion: 2
     m_Bits: 256
   orientation: {fileID: 5013216266252144590}
+  SpeedBullet: {fileID: 3554633590014631749, guid: af5d4b7fa367b3543ad52ac2518c2830,
+    type: 3}
+  SlowBullet: {fileID: 4209192674000990405, guid: 81cf7315126c2a34d90444f349dfc2bc,
+    type: 3}
+  Camera: {fileID: 5013216266571103022}
 --- !u!1 &5013216267632124209
 GameObject:
   m_ObjectHideFlags: 0
