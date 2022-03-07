@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
+            return;
         }
         //Check if the player is touching the ground
         isGrounded = Physics.CheckSphere(transform.position - new Vector3(0, 1.1f, 0), groundDistance, groundMask);
@@ -184,6 +185,7 @@ public class PlayerController : MonoBehaviour
         isDead = true;
         GetComponent<CameraController>().TriggerDeath();
         gameController.TriggerDeath();
+        cameraHolder.TriggerDeath();
         //Stop movement after death
         rb.constraints = RigidbodyConstraints.FreezeAll;
     }
