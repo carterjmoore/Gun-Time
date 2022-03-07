@@ -1,14 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class GameController : MonoBehaviour
 {
+    [Header("UI References")]
+    public RawImage crosshair;
+    public Image deathOverlay;
+    public Text deathText;
+
+    [Header("Cheats")]
     public bool enableChasers = true;
     public bool enableShooters = true;
     public bool invincibility = false;
-    // Update is called once per frame
+
+    private void Start()
+    {
+        crosshair.enabled = true;
+        deathOverlay.enabled = false;
+        deathText.enabled = false;
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F)) enableChasers = !enableChasers;
@@ -29,5 +43,12 @@ public class GameController : MonoBehaviour
     public bool invincible()
     {
         return invincibility;
+    }
+
+    public void TriggerDeath()
+    {
+        deathOverlay.enabled = true;
+        deathText.enabled = true;
+        crosshair.enabled = false;
     }
 }
