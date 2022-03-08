@@ -124,9 +124,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b361f75b859a114487cc6d04f8d7655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  fireRate: 3
-  player: {fileID: 0}
-  projectileType: {fileID: 0}
+  reloadTime: 1
   projectileSpeed: 12
   projectileSpread: 2
+  ignoreMask:
+    serializedVersion: 2
+    m_Bits: 512
+  player: {fileID: 0}
+  projectileType: {fileID: 1554143735299792028, guid: 5b6b04599530be34e9d8f074f4c0bc12,
+    type: 3}
+  gameController: {fileID: 0}

@@ -29,6 +29,6 @@ public class KillBulletController : MonoBehaviour
         }
 
         //Allow to fire through other enemies
-        else if(!other.gameObject.CompareTag("PhysEnemy")) Destroy(gameObject);
+        if(!other.gameObject.CompareTag("PhysEnemy") && !other.gameObject.CompareTag("Laser")) Destroy(gameObject);
     }
 }

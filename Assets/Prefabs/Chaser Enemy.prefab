@@ -128,4 +128,9 @@ MonoBehaviour:
   airMovementMultiplier: 0.4
   groundDrag: 6
   airDrag: 1.5
+  chaseThroughLasers: 1
+  ignoreMask:
+    serializedVersion: 2
+    m_Bits: 512
   player: {fileID: 0}
+  gameController: {fileID: 0}

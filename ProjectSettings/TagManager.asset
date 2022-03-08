@@ -8,7 +8,7 @@ TagManager:
   - Speed
   - PhysEnemy
   - PhysObject
-  - Death
+  - Laser
   layers:
   - Default
   - TransparentFX
@@ -19,7 +19,7 @@ TagManager:
   - 
   - 
   - Ground
-  - 
+  - Laser
   - 
   - 
   - 
