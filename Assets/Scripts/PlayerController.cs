@@ -10,8 +10,6 @@ public class PlayerController : MonoBehaviour
 {
     float playerHeight = 2f;
 
-    public GameController gameController;
-
     [Header("Movement")]
     public float speed = 6f;
     public float movementMultiplier = 10f;
@@ -37,13 +35,14 @@ public class PlayerController : MonoBehaviour
     Vector3 moveDirection;
 
     bool isDead;
-    bool dying;
     bool canFire; //can the player fire
 
     Rigidbody rb;
 
     [Header("References")]
     [SerializeField] Transform orientation;
+    public GameController gameController;
+    public MoveCamera cameraHolder;
 
     public GameObject SpeedBullet;
     public GameObject SlowBullet;
@@ -56,7 +55,6 @@ public class PlayerController : MonoBehaviour
         //Make sure player doesn't spin from forces
         rb.freezeRotation = true;
         isDead = false;
-        dying = false;
         canFire = true;
     }
 
@@ -64,14 +62,6 @@ public class PlayerController : MonoBehaviour
     {
         if (isDead)
         {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
-            if (dying)
-            {
-
-            }
             return;
         }
         //Check if the player is touching the ground
@@ -187,10 +177,13 @@ public class PlayerController : MonoBehaviour
     public void TriggerDeath()
     {
         if (gameController.invincible()) return;
-        Debug.Log("You Died!");
+
         isDead = true;
-        dying = true;
+        //Alert other entities of death
         GetComponent<CameraController>().TriggerDeath();
+        gameController.TriggerDeath();
+        cameraHolder.TriggerDeath();
+
         //Stop movement after death
         rb.constraints = RigidbodyConstraints.FreezeAll;
     }

@@ -1,16 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class GameController : MonoBehaviour
 {
+    bool dead;
+
+    [Header("UI References")]
+    public RawImage crosshair;
+    public Image deathOverlay;
+    public Text deathText;
+
+    [Header("Cheats")]
     public bool enableChasers = true;
     public bool enableShooters = true;
     public bool invincibility = false;
-    // Update is called once per frame
+
+    private void Start()
+    {
+        crosshair.enabled = true;
+        deathOverlay.enabled = false;
+        deathText.enabled = false;
+        dead = false;
+    }
+
     void Update()
     {
+        if (dead && Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         if (Input.GetKeyDown(KeyCode.F)) enableChasers = !enableChasers;
         if (Input.GetKeyDown(KeyCode.G)) enableShooters = !enableShooters;
         if (Input.GetKeyDown(KeyCode.I)) invincibility = !invincibility;
@@ -29,5 +48,13 @@ public class GameController : MonoBehaviour
     public bool invincible()
     {
         return invincibility;
+    }
+
+    public void TriggerDeath()
+    {
+        deathOverlay.enabled = true;
+        deathText.enabled = true;
+        crosshair.enabled = false;
+        dead = true;
     }
 }

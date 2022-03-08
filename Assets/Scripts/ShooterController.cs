@@ -49,7 +49,7 @@ public class ShooterController : ShootableEntity
         {
             GameObject firedProjectile = Instantiate(projectileType, transform.position, Quaternion.identity);
             Physics.IgnoreCollision(firedProjectile.GetComponent<Collider>(), GetComponent<Collider>());
-            
+
             //Rigidbody rbP = firedProjectile.GetComponent<Rigidbody>();
 
             /*
@@ -58,7 +58,8 @@ public class ShooterController : ShootableEntity
             */
 
             //note that this is currenly hardcoded for KILL bullet in the component reference
-            firedProjectile.GetComponent<KillBulletController>().InitProjectile(transform.position + transform.forward*0.5f, transform.forward * projectileSpeed);
+            Vector3 shootDirection = (player.transform.position - transform.position).normalized;
+            firedProjectile.GetComponent<KillBulletController>().InitProjectile(transform.position + transform.forward*0.5f, shootDirection * projectileSpeed);
 
             /*
             rbP.AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);
