@@ -62,10 +62,6 @@ public class PlayerController : MonoBehaviour
     {
         if (isDead)
         {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
             return;
         }
         //Check if the player is touching the ground
@@ -181,11 +177,13 @@ public class PlayerController : MonoBehaviour
     public void TriggerDeath()
     {
         if (gameController.invincible()) return;
-        Debug.Log("You Died!");
+
         isDead = true;
+        //Alert other entities of death
         GetComponent<CameraController>().TriggerDeath();
         gameController.TriggerDeath();
         cameraHolder.TriggerDeath();
+
         //Stop movement after death
         rb.constraints = RigidbodyConstraints.FreezeAll;
     }

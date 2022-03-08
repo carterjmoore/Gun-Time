@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class GameController : MonoBehaviour
 {
+    bool dead;
+
     [Header("UI References")]
     public RawImage crosshair;
     public Image deathOverlay;
@@ -21,10 +24,12 @@ public class GameController : MonoBehaviour
         crosshair.enabled = true;
         deathOverlay.enabled = false;
         deathText.enabled = false;
+        dead = false;
     }
 
     void Update()
     {
+        if (dead && Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         if (Input.GetKeyDown(KeyCode.F)) enableChasers = !enableChasers;
         if (Input.GetKeyDown(KeyCode.G)) enableShooters = !enableShooters;
         if (Input.GetKeyDown(KeyCode.I)) invincibility = !invincibility;
@@ -50,5 +55,6 @@ public class GameController : MonoBehaviour
         deathOverlay.enabled = true;
         deathText.enabled = true;
         crosshair.enabled = false;
+        dead = true;
     }
 }
