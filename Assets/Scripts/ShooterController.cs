@@ -9,6 +9,7 @@ public class ShooterController : ShootableEntity
     public float reloadTime = 1f;
     public float projectileSpeed = 2f;
     public float projectileSpread = 2f;
+    public LayerMask ignoreMask;
 
     [Header("References")]
     public GameObject player;
@@ -85,7 +86,7 @@ public class ShooterController : ShootableEntity
         //Raycast from chaser to player to check if player is visible
         RaycastHit hit;
         Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.green);
-        if (Physics.Raycast(transform.position, player.transform.position - transform.position, out hit, Mathf.Infinity))
+        if (Physics.Raycast(transform.position, player.transform.position - transform.position, out hit, Mathf.Infinity, ~ignoreMask))
         {
             //If raycast hits player before anything else, player is visible
             if (hit.transform.gameObject == player)

@@ -12,6 +12,10 @@ public class ChaserController : ShootableEntity
     public float groundDrag = 6f;
     public float airDrag = 1.5f;
 
+    [Header("Chase Options")]
+    public bool chaseThroughLasers = true;
+    public LayerMask ignoreMask;
+
     [Header("References")]
     public GameObject player;
     public GameController gameController;
@@ -41,6 +45,9 @@ public class ChaserController : ShootableEntity
         distanceTolerance = 0.1f;
         reachedTarget = true;
         haveAdjustedTarget = true;
+
+        //If we want to chase through lasers, empty ignore mask
+        if (!chaseThroughLasers) ignoreMask = new LayerMask();
     }
 
     void FixedUpdate()
@@ -67,8 +74,8 @@ public class ChaserController : ShootableEntity
             }
             targetPos = player.transform.position;
             haveAdjustedTarget = false;
-            moveAroundWalls();
         }
+
         //If just lost sight of player, set targetPos to slightly ahead of its current position, to make sure chaser gets around corner
         else if (!haveAdjustedTarget)
         {
@@ -76,6 +83,9 @@ public class ChaserController : ShootableEntity
             StartCoroutine(setPlayerPosRightAfterLostLOS());
             haveAdjustedTarget = true;
         }
+
+        //Avoid walls
+        moveAroundWalls();
 
         //If player is not dead, move to target
         if (!playerController.IsDead())
@@ -122,13 +132,14 @@ public class ChaserController : ShootableEntity
     {
         Vector3 right = Vector3.Cross(transform.forward, transform.up).normalized;
         Vector3 left = -right;
+
         //If there is a wall diagonally to the right, avoid it
-        if (Physics.Raycast(transform.position, transform.forward + right, 1.5f))
+        if (Physics.Raycast(transform.position, transform.forward + right, 1.5f, ~ignoreMask))
         {
             rb.AddForce(left * speed * movementMultiplier / 2, ForceMode.Acceleration);
         }
         //If the is a wall diagonally to the left, avoid it
-        else if (Physics.Raycast(transform.position, transform.forward + left, 1.5f))
+        else if (Physics.Raycast(transform.position, transform.forward + left, 1.5f, ~ignoreMask))
         {
             rb.AddForce(right * speed * movementMultiplier / 2, ForceMode.Acceleration);
         }
@@ -139,10 +150,10 @@ public class ChaserController : ShootableEntity
     {
         //Raycast from chaser to player to check if player is visible
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, player.transform.position - transform.position, out hit, Mathf.Infinity))
-        {
+
+        if(chaseThroughLasers && Physics.Raycast(transform.position, player.transform.position - transform.position, out hit, Mathf.Infinity, ~ignoreMask)){
             //If raycast hits player before anything else, player is visible
-            if(hit.transform.gameObject == player)
+            if (hit.transform.gameObject == player)
             {
                 return true;
             }
