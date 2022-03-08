@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//Script taken from: https://www.youtube.com/watch?v=cTIAhwlvW9M
+//This script controls the player's camera holder. When alive, it sets the camera transform, and
+//when dead, it handles the death camera animation.
 public class MoveCamera : MonoBehaviour
 {
     [SerializeField] Transform cameraPosition;
@@ -15,7 +16,6 @@ public class MoveCamera : MonoBehaviour
     float deathXRotation;
     float deathYRotation;
     int deathXRotationDirection;
-    float tolerance;
 
     private void Start()
     {

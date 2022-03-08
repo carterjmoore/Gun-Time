@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//This handles time status for anything that can be shot by the player
 public class ShootableEntity : MonoBehaviour
 {
     //Represents current slow/speed status. Negative means slowed, positive means sped up

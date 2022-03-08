@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
+//Script for GameController, which handles UI and testing cheats, and will eventually handle settings
 public class GameController : MonoBehaviour
 {
     bool dead;

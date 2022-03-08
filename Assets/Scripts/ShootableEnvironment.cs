@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//This script extends from ShootableEntity, and is for any shootable environment objects.
+//The difference is that shootable environment objects will automatically reduce their time status after 5 seconds.
 public class ShootableEnvironment : ShootableEntity
 {
     bool reducing;
