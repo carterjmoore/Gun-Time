@@ -52,6 +52,7 @@ public class MoveCamera : MonoBehaviour
     public void TriggerDeath()
     {
         //Enable rigidbody and box collider so that camera falls
+        //Player object is made inactive to avoid awkward camera-player collisions
         dead = true;
         GameObject player = transform.parent.gameObject;
         transform.parent = null;
