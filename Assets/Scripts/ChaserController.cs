@@ -46,15 +46,15 @@ public class ChaserController : ShootableEntity
         reachedTarget = true;
         haveAdjustedTarget = true;
 
-        //If we want to chase through lasers, empty ignore mask
-        if (!chaseThroughLasers) ignoreMask = new LayerMask();
+        //If we want to chase through lasers, remove laser from ignoreMask
+        if (!chaseThroughLasers) ignoreMask = LayerMask.GetMask("TransparentFX");
     }
 
     void FixedUpdate()
     {
         if (!gameController.chasersEnabled())
         {
-            return;
+           return;
         }
 
         isGrounded = Physics.CheckSphere(transform.position - new Vector3(0, 1.1f, 0), groundDistance);
@@ -102,7 +102,7 @@ public class ChaserController : ShootableEntity
             //If haven't reached target, snap to target
             if (!reachedTarget && !playerVisible())
             {
-                transform.position = targetPos;
+                transform.position = new Vector3(targetPos.x, transform.position.y, targetPos.z);
             }
 
             //If just reached last seen player pos, now move toward pos of player slightly after lost LOS for improved chasing
@@ -223,5 +223,11 @@ public class ChaserController : ShootableEntity
         {
             rb.drag = airDrag;
         }
+    }
+
+    public void setReferences(GameObject playerObject)
+    {
+        player = playerObject;
+        gameController = player.GetComponent<PlayerController>().gameController;
     }
 }

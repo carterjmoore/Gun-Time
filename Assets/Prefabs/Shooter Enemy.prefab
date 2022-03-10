@@ -129,7 +129,7 @@ MonoBehaviour:
   projectileSpread: 2
   ignoreMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 514
   player: {fileID: 0}
   projectileType: {fileID: 1554143735299792028, guid: 5b6b04599530be34e9d8f074f4c0bc12,
     type: 3}
