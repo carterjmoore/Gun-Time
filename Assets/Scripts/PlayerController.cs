@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
             GameObject b = Instantiate(SpeedBullet, new Vector3(0f, 0f, 0f), Quaternion.identity);
 
             //offset it, then give initial velocity (the second argument of the initprojectile is the speed)
-            b.GetComponent<BulletController>().InitProjectile(transform.position + Camera.transform.forward*2.0f, Camera.transform.forward * bulletSpeed);
+            b.GetComponent<BulletController>().InitProjectile(transform.position + Camera.transform.forward * 2.0f, Camera.transform.forward * bulletSpeed);
             StartCoroutine(PlayerCanFireAgain());
             canFire = false;
             Destroy(b, 10f);

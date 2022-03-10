@@ -151,7 +151,7 @@ public class ChaserController : ShootableEntity
         //Raycast from chaser to player to check if player is visible
         RaycastHit hit;
 
-        if(chaseThroughLasers && Physics.Raycast(transform.position, player.transform.position - transform.position, out hit, Mathf.Infinity, ~ignoreMask)){
+        if(Physics.Raycast(transform.position, player.transform.position - transform.position, out hit, Mathf.Infinity, ~ignoreMask)){
             //If raycast hits player before anything else, player is visible
             if (hit.transform.gameObject == player)
             {
