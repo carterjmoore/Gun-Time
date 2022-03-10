@@ -625,6 +625,11 @@ PrefabInstance:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 1506278020}
+    - target: {fileID: 3540418510842471512, guid: 933c240d8f1ed1d43becbd886f02cae5,
+        type: 3}
+      propertyPath: chaseThroughLasers
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3540418510842471514, guid: 933c240d8f1ed1d43becbd886f02cae5,
         type: 3}
       propertyPath: m_Name
