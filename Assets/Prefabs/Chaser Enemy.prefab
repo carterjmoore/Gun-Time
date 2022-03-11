@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3540418510842471518}
   - component: {fileID: 3540418510842471513}
   - component: {fileID: 3540418510842471512}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Chaser Enemy
   m_TagString: PhysEnemy
   m_Icon: {fileID: 0}
