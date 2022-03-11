@@ -17,6 +17,7 @@ public class InnerBulletHitboxController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         GameObject obj = other.gameObject;
+        if (obj.CompareTag("Trigger")) return;
         if (!forKillBullet && !obj.CompareTag("Speed") && !obj.CompareTag("Slow")) destroyProjectile();
         if (forKillBullet && !obj.CompareTag("Kill") && !obj.CompareTag("PhysEnemy") && !obj.CompareTag("Laser")) destroyProjectile();
     }
