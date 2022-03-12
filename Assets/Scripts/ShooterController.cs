@@ -70,7 +70,7 @@ public class ShooterController : ShootableEntity
             canAttack = false;
 
             StartCoroutine(ResetAttack());
-            Destroy(firedProjectile, 10f);
+            Destroy(firedProjectile, 15f);
         }
     }
 

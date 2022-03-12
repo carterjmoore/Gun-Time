@@ -10,10 +10,13 @@ public class ShootableEntity : MonoBehaviour
     //The max magnitude for timeStatus (positive or negative)
     int maxStatus;
 
+    bool timeJustChanged;
+
     protected virtual void Start()
     {
         timeStatus = 0;
         maxStatus = 3;
+        timeJustChanged = false;
     }
 
     protected virtual void Update()
@@ -30,15 +33,17 @@ public class ShootableEntity : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Slow"))
+        if (other.gameObject.CompareTag("Slow") && !timeJustChanged)
         {
+            StartCoroutine(TimeJustChanged());
+            Destroy(other.gameObject);
             gotSlowed();
-            Destroy(other.gameObject);
         }
-        if (other.gameObject.CompareTag("Speed"))
+        if (other.gameObject.CompareTag("Speed") && !timeJustChanged)
         {
-            gotSpeed();
+            StartCoroutine(TimeJustChanged());
             Destroy(other.gameObject);
+            gotSpeed();
         }
     }
 
@@ -58,5 +63,14 @@ public class ShootableEntity : MonoBehaviour
     protected virtual void gotSpeed()
     {
         timeStatus = Mathf.Min(timeStatus + 1, maxStatus);
+    }
+
+    //For some reason, time status was getting applied twice sometimes, so this is a bandaid to fix it
+    //It seemed as though the OnTriggerEnter() was getting triggered twice by the projectile, but I couldn't figure out why
+    IEnumerator TimeJustChanged()
+    {
+        timeJustChanged = true;
+        yield return new WaitForEndOfFrame();
+        timeJustChanged = false;
     }
 }
