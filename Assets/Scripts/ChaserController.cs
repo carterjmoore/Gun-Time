@@ -22,7 +22,6 @@ public class ChaserController : ShootableEntity
 
     float chaserHeight = 1f;
     bool isGrounded;
-    float groundDistance = 0.45f;
 
     PlayerController playerController;
     Rigidbody rb;
@@ -57,7 +56,7 @@ public class ChaserController : ShootableEntity
            return;
         }
 
-        isGrounded = Physics.CheckSphere(transform.position - new Vector3(0, 1.1f, 0), groundDistance);
+        isGrounded = Physics.CheckBox(transform.position - new Vector3(0, 0.4f, 0), new Vector3(0.6f, 0.2f, 0.6f), transform.rotation, ~ignoreMask);
         setDrag();
 
         //If player is visible, look at player and set targetPos to player's pos
