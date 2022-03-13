@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/CarterLevel2.unity
     guid: d13b91b582d778347a9589732e49d4a1
+  - enabled: 1
+    path: Assets/Scenes/CarterLevel1.unity
+    guid: 7f06c46bec806004aa47573c96c72c17
   m_configObjects: {}
