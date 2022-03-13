@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/CarterLevel2.unity
+    guid: d13b91b582d778347a9589732e49d4a1
   m_configObjects: {}
