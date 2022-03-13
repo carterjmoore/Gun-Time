@@ -6786,6 +6786,11 @@ PrefabInstance:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 131319865}
+    - target: {fileID: 6940946366807585508, guid: 556258e0dd8e4b246844690300840bcf,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6940946366807585509, guid: 556258e0dd8e4b246844690300840bcf,
         type: 3}
       propertyPath: m_Name
