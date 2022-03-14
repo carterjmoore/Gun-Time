@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3540418510842471518}
   - component: {fileID: 3540418510842471513}
   - component: {fileID: 3540418510842471512}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Chaser Enemy
   m_TagString: PhysEnemy
   m_Icon: {fileID: 0}
@@ -125,12 +125,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5.9
   movementMultiplier: 10
-  airMovementMultiplier: 0.001
+
+  airMovementMultiplier: 0
+
   groundDrag: 6
   airDrag: 1.5
   chaseThroughLasers: 1
   ignoreMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 514
   player: {fileID: 0}
   gameController: {fileID: 0}

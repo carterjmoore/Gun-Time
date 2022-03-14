@@ -7,10 +7,24 @@ using UnityEngine;
 public class InnerBulletHitboxController : MonoBehaviour
 {
     public bool forKillBullet = false;
+    GameObject projectile;
+
+    private void Start()
+    {
+        projectile = transform.parent.gameObject;
+    }
+
     void OnTriggerEnter(Collider other)
     {
         GameObject obj = other.gameObject;
-        if (!forKillBullet && !obj.CompareTag("Speed") && !obj.CompareTag("Slow")) Destroy(transform.parent.gameObject);
-        if (forKillBullet && !obj.CompareTag("Kill") && !obj.CompareTag("PhysEnemy") && !obj.CompareTag("Laser")) Destroy(transform.parent.gameObject);
+        if (obj.CompareTag("Trigger")) return;
+        if (!forKillBullet && !obj.CompareTag("Speed") && !obj.CompareTag("Slow")) destroyProjectile();
+        if (forKillBullet && !obj.CompareTag("Kill") && !obj.CompareTag("PhysEnemy") && !obj.CompareTag("Laser")) destroyProjectile();
+    }
+
+    void destroyProjectile()
+    {
+        Destroy(gameObject);
+        Destroy(projectile);
     }
 }

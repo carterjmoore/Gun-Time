@@ -8,7 +8,7 @@ public class ChaserController : ShootableEntity
     [Header("Movement")]
     public float speed = 5.9f;
     public float movementMultiplier = 10f;
-    public float airMovementMultiplier = 0.4f;
+    public float airMovementMultiplier = 0f;
     public float groundDrag = 6f;
     public float airDrag = 1.5f;
 
@@ -22,7 +22,6 @@ public class ChaserController : ShootableEntity
 
     float chaserHeight = 1f;
     bool isGrounded;
-    float groundDistance = 0.45f;
 
     PlayerController playerController;
     Rigidbody rb;
@@ -46,18 +45,18 @@ public class ChaserController : ShootableEntity
         reachedTarget = true;
         haveAdjustedTarget = true;
 
-        //If we want to chase through lasers, empty ignore mask
-        if (!chaseThroughLasers) ignoreMask = new LayerMask();
+        //If we want to chase through lasers, remove laser from ignoreMask
+        if (!chaseThroughLasers) ignoreMask = LayerMask.GetMask("TransparentFX");
     }
 
     void FixedUpdate()
     {
         if (!gameController.chasersEnabled())
         {
-            return;
+           return;
         }
 
-        isGrounded = Physics.CheckSphere(transform.position - new Vector3(0, 1.1f, 0), groundDistance);
+        isGrounded = Physics.CheckBox(transform.position - new Vector3(0, 0.4f, 0), new Vector3(0.6f, 0.2f, 0.6f), transform.rotation, ~ignoreMask);
         setDrag();
 
         //If player is visible, look at player and set targetPos to player's pos
@@ -102,7 +101,7 @@ public class ChaserController : ShootableEntity
             //If haven't reached target, snap to target
             if (!reachedTarget && !playerVisible())
             {
-                transform.position = targetPos;
+                transform.position = new Vector3(targetPos.x, transform.position.y, targetPos.z);
             }
 
             //If just reached last seen player pos, now move toward pos of player slightly after lost LOS for improved chasing
@@ -151,7 +150,7 @@ public class ChaserController : ShootableEntity
         //Raycast from chaser to player to check if player is visible
         RaycastHit hit;
 
-        if(chaseThroughLasers && Physics.Raycast(transform.position, player.transform.position - transform.position, out hit, Mathf.Infinity, ~ignoreMask)){
+        if(Physics.Raycast(transform.position, player.transform.position - transform.position, out hit, Mathf.Infinity, ~ignoreMask)){
             //If raycast hits player before anything else, player is visible
             if (hit.transform.gameObject == player)
             {
@@ -223,5 +222,11 @@ public class ChaserController : ShootableEntity
         {
             rb.drag = airDrag;
         }
+    }
+
+    public void setReferences(GameObject playerObject)
+    {
+        player = playerObject;
+        gameController = player.GetComponent<PlayerController>().gameController;
     }
 }
