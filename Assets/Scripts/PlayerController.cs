@@ -102,8 +102,7 @@ public class PlayerController : MonoBehaviour
             //offset it, then give initial velocity (the second argument of the initprojectile is the speed)
             b.GetComponent<BulletController>().InitProjectile(transform.position + Camera.transform.forward * 2.0f, Camera.transform.forward * bulletSpeed);
             StartCoroutine(PlayerCanFireAgain());
-            canFire = false;
-            Destroy(b, 10f);
+            Destroy(b, 15f);
         }
 
         //fire slow bullet
@@ -113,8 +112,7 @@ public class PlayerController : MonoBehaviour
 
             b.GetComponent<BulletController>().InitProjectile(transform.position + Camera.transform.forward * 2.0f, Camera.transform.forward * bulletSpeed);
             StartCoroutine(PlayerCanFireAgain());
-            canFire = false;
-            Destroy(b, 10f);
+            Destroy(b, 15f);
         }
     }
 
@@ -194,7 +192,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator PlayerCanFireAgain()
     {
-        //this will pause the execution of this method for 1 seconds without blocking
+        //this will pause the execution of this method for reloadTime
+        canFire = false;
         yield return new WaitForSecondsRealtime(reloadTime);
         canFire = true;
     }

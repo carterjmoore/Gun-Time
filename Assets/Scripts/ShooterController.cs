@@ -27,6 +27,7 @@ public class ShooterController : ShootableEntity
         playerController = player.GetComponent<PlayerController>();
         rb = transform.GetComponent<Rigidbody>();
         canAttack = true;
+        rb.drag = 2f; //Same as airdrag of player and chasers, so launching shooter will be consistent
     }
 
     void FixedUpdate()
@@ -70,7 +71,7 @@ public class ShooterController : ShootableEntity
             canAttack = false;
 
             StartCoroutine(ResetAttack());
-            Destroy(firedProjectile, 10f);
+            Destroy(firedProjectile, 15f);
         }
     }
 

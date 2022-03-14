@@ -9,6 +9,8 @@ TagManager:
   - PhysEnemy
   - PhysObject
   - Laser
+  - Kill
+  - Trigger
   layers:
   - Default
   - TransparentFX
