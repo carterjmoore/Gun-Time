@@ -1210,7 +1210,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1468796130}
-        m_MethodName: LoadGauntlet
+        m_MethodName: LoadHallway
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
