@@ -55,7 +55,16 @@ public class PlayerController : MonoBehaviour
         //Make sure player doesn't spin from forces
         rb.freezeRotation = true;
         isDead = false;
-        canFire = true;
+        if (SceneManager.GetActiveScene().name == "Introduction")
+        {
+            canFire = false;
+        }
+        else
+        {
+            canFire = true;
+        }
+
+
     }
 
     private void Update()
