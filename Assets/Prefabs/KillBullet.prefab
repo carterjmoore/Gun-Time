@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1554143735299792001}
   - component: {fileID: 1554143735299792002}
   - component: {fileID: 1554143735299792003}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: KillBullet
   m_TagString: Kill
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 6392596993560419880}
   - component: {fileID: 1087420606468480064}
   - component: {fileID: 6458625542947567604}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: InnerHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
