@@ -50,12 +50,16 @@ public class PlayerController : MonoBehaviour
     public GameObject Camera;
     public AudioSource speedShot;
     public AudioSource slowShot;
+    public AudioSource deathSound;
+
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         speedShot = GetComponent<AudioSource>();
         slowShot = GetComponent<AudioSource>();
+        deathSound = GetComponent<AudioSource>();
+
         //Make sure player doesn't spin from forces
         rb.freezeRotation = true;
         isDead = false;
@@ -184,13 +188,17 @@ public class PlayerController : MonoBehaviour
     //Handle player death
     public void TriggerDeath()
     {
+        deathSound.Play();
+        Debug.Log("Death!");
         if (gameController.invincible()) return;
 
         isDead = true;
         //Alert other entities of death
+
+
         GetComponent<CameraController>().TriggerDeath();
-        gameController.TriggerDeath();
         cameraHolder.TriggerDeath();
+        gameController.TriggerDeath();
 
         //Stop movement after death
         rb.constraints = RigidbodyConstraints.FreezeAll;
@@ -205,4 +213,12 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSecondsRealtime(reloadTime);
         canFire = true;
     }
+
+    //camera dying slightly slower to allow death sound to play
+    IEnumerator Dying()
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
+        
+    }
+
 }

@@ -21,6 +21,9 @@ public class ShooterController : ShootableEntity
 
     bool canAttack;
 
+    public AudioSource AttackSound;
+
+
     protected override void Start()
     {
         base.Start();
@@ -49,6 +52,7 @@ public class ShooterController : ShootableEntity
     {
         if (canAttack && timeMultiplier() != 0)
         {
+            //AttackSound.Play();
             GameObject firedProjectile = Instantiate(projectileType, transform.position, Quaternion.identity);
             Physics.IgnoreCollision(firedProjectile.GetComponent<Collider>(), GetComponent<Collider>());
 
