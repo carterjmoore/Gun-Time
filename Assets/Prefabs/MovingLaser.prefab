@@ -109,7 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   pos2: {x: 0, y: 0, z: 0}
-  LaserNoise: {fileID: 0}
+  LaserNoise: {fileID: -1856929963517417967}
 --- !u!82 &-1856929963517417967
 AudioSource:
   m_ObjectHideFlags: 0

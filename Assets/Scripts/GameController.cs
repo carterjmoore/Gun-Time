@@ -19,6 +19,8 @@ public class GameController : MonoBehaviour
     public bool enableShooters = true;
     public bool invincibility = false;
 
+    public AudioSource deathSound;
+
     private void Start()
     {
         crosshair.enabled = true;
@@ -52,6 +54,7 @@ public class GameController : MonoBehaviour
 
     public void TriggerDeath()
     {
+        deathSound.Play();
         deathOverlay.enabled = true;
         deathText.enabled = true;
         crosshair.enabled = false;
