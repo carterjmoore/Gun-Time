@@ -32,11 +32,14 @@ public class ChaserController : ShootableEntity
 
     bool reachedTarget;
     bool haveAdjustedTarget;
+    public AudioSource AttackSound;
+
 
 
     protected override void Start()
     {
         base.Start();
+        AttackSound = GetComponent<AudioSource>();
         playerController = player.GetComponent<PlayerController>();
         rb = transform.GetComponent<Rigidbody>();
         targetPos = transform.position;
@@ -191,6 +194,7 @@ public class ChaserController : ShootableEntity
     {
         if(collision.gameObject == player)
         {
+            AttackSound.Play();
             playerController.TriggerDeath();
         }
     }
