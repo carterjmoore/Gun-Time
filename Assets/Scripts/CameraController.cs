@@ -23,10 +23,6 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        //Hide cursor and lock it to center
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
         isDead = false;
     }
 
