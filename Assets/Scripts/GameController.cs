@@ -8,6 +8,8 @@ using TMPro;
 //Script for GameController, which handles UI and testing cheats, and will eventually handle settings
 public class GameController : MonoBehaviour
 {
+    private bool paused;
+
     public string nextLevelName;
     public RawImage crosshair;
 
@@ -19,6 +21,11 @@ public class GameController : MonoBehaviour
     public Button nextLevelButton;
     public Button retryButton;
 
+    [Header("Pause UI References")]
+    public Image pauseOverlay;
+    public Button resumeButton;
+    public Button optionsButton;
+
     [Header("Cheats")]
     public bool enableChasers = true;
     public bool enableShooters = true;
@@ -29,13 +36,18 @@ public class GameController : MonoBehaviour
         hideUI();
         lockCursor();
         crosshair.enabled = true;
+        paused = false;
     }
 
     void Update()
     {
+        //Handle cheats
         if (Input.GetKeyDown(KeyCode.F)) enableChasers = !enableChasers;
         if (Input.GetKeyDown(KeyCode.G)) enableShooters = !enableShooters;
         if (Input.GetKeyDown(KeyCode.I)) invincibility = !invincibility;
+
+        if (!paused && Input.GetKeyDown(KeyCode.Escape)) Pause();
+        else if (paused && Input.GetKeyDown(KeyCode.Escape)) UnPause();
     }
 
     public bool chasersEnabled() { return enableChasers; }
@@ -48,6 +60,10 @@ public class GameController : MonoBehaviour
     {
         crosshair.enabled = false;
         unlockCursor();
+
+        //Move Main mainMenuButton to proper spot
+        Vector3 curPos = mainMenuButton.transform.position;
+        mainMenuButton.transform.position.Set(curPos.x, -150f, curPos.z);
 
         //Show UI
         deathOverlay.enabled = true;
@@ -62,12 +78,46 @@ public class GameController : MonoBehaviour
         crosshair.enabled = false;
         unlockCursor();
 
+        //Move Main mainMenuButton to proper spot
+        Vector3 curPos = mainMenuButton.transform.position;
+        mainMenuButton.transform.position.Set(curPos.x, -150f, curPos.z);
+
         //Show UI
         winOverlay.enabled = true;
         winLoseText.text = "LEVEL\nCOMPLETE";
         winLoseText.enabled = true;
         enableButton(mainMenuButton);
         enableButton(nextLevelButton);
+    }
+
+    private void Pause()
+    {
+
+        Time.timeScale = 0;
+        crosshair.enabled = false;
+        unlockCursor();
+
+        //Move Main mainMenuButton to proper spot
+        Vector3 curPos = mainMenuButton.transform.position;
+        mainMenuButton.transform.position.Set(curPos.x, -75f, curPos.z);
+
+        //Show UI
+        pauseOverlay.enabled = true;
+        enableButton(resumeButton);
+        enableButton(optionsButton);
+        enableButton(mainMenuButton);
+
+        paused = true;
+    }
+
+    public void UnPause()
+    {
+        Time.timeScale = 1;
+        crosshair.enabled = true;
+        lockCursor();
+        hideUI();
+
+        paused = false;
     }
 
     public void ToMainMenu() { SceneManager.LoadScene("MainMenu"); }
@@ -78,12 +128,18 @@ public class GameController : MonoBehaviour
 
     private void hideUI()
     {
+        //Hide win/lose UI elements
         winOverlay.enabled = false;
         deathOverlay.enabled = false;
         winLoseText.enabled = false;
         disableButton(mainMenuButton);
         disableButton(nextLevelButton);
         disableButton(retryButton);
+
+        //Hide pause UI elements
+        pauseOverlay.enabled = false;
+        disableButton(resumeButton);
+        disableButton(optionsButton);
     }
 
     void disableButton(Button button)
