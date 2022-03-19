@@ -28,8 +28,10 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        //If dead, player can't control camera anymore
-        if (isDead) return;
+        //If dead or paused, player can't control camera anymore
+        //The second part gets a reference to the GameController by accessing it through
+        //the public variable in the PlayerController script
+        if (isDead || GetComponent<PlayerController>().gameController.isPaused()) return;
         
         handleInput();
 

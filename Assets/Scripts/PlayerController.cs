@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (isDead)
+        if (isDead || gameController.isPaused())
         {
             return;
         }

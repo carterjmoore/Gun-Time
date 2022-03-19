@@ -62,8 +62,7 @@ public class GameController : MonoBehaviour
         unlockCursor();
 
         //Move Main mainMenuButton to proper spot
-        Vector3 curPos = mainMenuButton.transform.position;
-        mainMenuButton.transform.position.Set(curPos.x, -150f, curPos.z);
+        setButtonPosY(mainMenuButton, -150f);
 
         //Show UI
         deathOverlay.enabled = true;
@@ -79,8 +78,7 @@ public class GameController : MonoBehaviour
         unlockCursor();
 
         //Move Main mainMenuButton to proper spot
-        Vector3 curPos = mainMenuButton.transform.position;
-        mainMenuButton.transform.position.Set(curPos.x, -150f, curPos.z);
+        setButtonPosY(mainMenuButton, -150f);
 
         //Show UI
         winOverlay.enabled = true;
@@ -92,14 +90,12 @@ public class GameController : MonoBehaviour
 
     private void Pause()
     {
-
         Time.timeScale = 0;
         crosshair.enabled = false;
         unlockCursor();
 
         //Move Main mainMenuButton to proper spot
-        Vector3 curPos = mainMenuButton.transform.position;
-        mainMenuButton.transform.position.Set(curPos.x, -75f, curPos.z);
+        setButtonPosY(mainMenuButton, -75f);
 
         //Show UI
         pauseOverlay.enabled = true;
@@ -156,6 +152,12 @@ public class GameController : MonoBehaviour
         button.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
     }
 
+    void setButtonPosY(Button button, float posY)
+    {
+        RectTransform trans = button.GetComponent<RectTransform>();
+        trans.anchoredPosition = new Vector2(trans.anchoredPosition.x, posY);
+    }
+
     void unlockCursor()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -167,4 +169,6 @@ public class GameController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+
+    public bool isPaused() { return paused; }
 }
