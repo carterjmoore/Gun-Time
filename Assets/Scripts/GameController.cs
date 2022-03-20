@@ -26,6 +26,9 @@ public class GameController : MonoBehaviour
     public Button resumeButton;
     public Button optionsButton;
 
+    [Header("Options References")]
+    public OptionsMenuController optionsController;
+
     [Header("Cheats")]
     public bool enableChasers = true;
     public bool enableShooters = true;
@@ -88,7 +91,7 @@ public class GameController : MonoBehaviour
         enableButton(nextLevelButton);
     }
 
-    private void Pause()
+    public void Pause()
     {
         Time.timeScale = 0;
         crosshair.enabled = false;
@@ -112,8 +115,17 @@ public class GameController : MonoBehaviour
         crosshair.enabled = true;
         lockCursor();
         hideUI();
+        optionsController.SavePrefs();
+        optionsController.Hide();
 
         paused = false;
+    }
+
+    public void ShowOptions()
+    {
+        hideUI();
+        pauseOverlay.enabled = true;
+        optionsController.Show();
     }
 
     public void ToMainMenu() { SceneManager.LoadScene("MainMenu"); }

@@ -6,15 +6,11 @@ using UnityEngine;
 //Modified by Carter Moore
 public class CameraController : MonoBehaviour
 {
-    public float sensitivity = 100f;
-
     [SerializeField] Transform cam;
     [SerializeField] Transform orientation;
 
     float mouseX;
     float mouseY;
-
-    float multiplier = 0.01f;
 
     float xRotation;
     float yRotation;
@@ -47,8 +43,8 @@ public class CameraController : MonoBehaviour
         mouseX = Input.GetAxisRaw("Mouse X");
         mouseY = Input.GetAxisRaw("Mouse Y");
 
-        yRotation += mouseX * sensitivity * multiplier;
-        xRotation -= +mouseY * sensitivity * multiplier;
+        yRotation += mouseX * PlayerPrefs.GetFloat("sens");
+        xRotation -= +mouseY * PlayerPrefs.GetFloat("sens");
 
         //Clamp our vertical cam movement so it can't look farther than straight up or down.
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);

@@ -23,24 +23,12 @@ public class MainMenuController : MonoBehaviour
     public Button towerButton;
     public Button backButton;
 
-    // Start is called before the first frame update
+    //Options menu
+    public OptionsMenuController optionsController;
+
     void Start()
     {
         ShowMainMenu();
-    }
-
-    void disableButton(Button button)
-    {
-        button.image.enabled = false;
-        button.enabled = false;
-        button.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
-    }
-
-    void enableButton(Button button)
-    {
-        button.image.enabled = true;
-        button.enabled = true;
-        button.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
     }
 
     public void ShowMainMenu()
@@ -60,6 +48,9 @@ public class MainMenuController : MonoBehaviour
         disableButton(ambushButton);
         disableButton(towerButton);
         disableButton(backButton);
+
+        //Hide options
+        optionsController.Hide();
     }
 
     public void ShowLevelSelect()
@@ -83,7 +74,12 @@ public class MainMenuController : MonoBehaviour
 
     public void ShowOptions()
     {
-        //No options yet
+        titleText.enabled = false;
+        disableButton(levelsButton);
+        disableButton(optionsButton);
+        disableButton(quitButton);
+
+        optionsController.Show();
     }
 
     public void QuitGame()
@@ -124,5 +120,19 @@ public class MainMenuController : MonoBehaviour
     public void LoadTower()
     {
         SceneManager.LoadScene("Tower");
+    }
+
+    void disableButton(Button button)
+    {
+        button.image.enabled = false;
+        button.enabled = false;
+        button.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
+    }
+
+    void enableButton(Button button)
+    {
+        button.image.enabled = true;
+        button.enabled = true;
+        button.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
     }
 }
