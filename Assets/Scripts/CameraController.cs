@@ -6,11 +6,15 @@ using UnityEngine;
 //Modified by Carter Moore
 public class CameraController : MonoBehaviour
 {
+    public float sensitivity = 100f;
+
     [SerializeField] Transform cam;
     [SerializeField] Transform orientation;
 
     float mouseX;
     float mouseY;
+
+    float multiplier = 0.01f;
 
     float xRotation;
     float yRotation;
@@ -19,15 +23,17 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
+        //Hide cursor and lock it to center
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         isDead = false;
     }
 
     private void Update()
     {
-        //If dead or paused, player can't control camera anymore
-        //The second part gets a reference to the GameController by accessing it through
-        //the public variable in the PlayerController script
-        if (isDead || GetComponent<PlayerController>().gameController.isPaused()) return;
+        //If dead, player can't control camera anymore
+        if (isDead) return;
         
         handleInput();
 
@@ -43,8 +49,8 @@ public class CameraController : MonoBehaviour
         mouseX = Input.GetAxisRaw("Mouse X");
         mouseY = Input.GetAxisRaw("Mouse Y");
 
-        yRotation += mouseX * PlayerPrefs.GetFloat("sens");
-        xRotation -= +mouseY * PlayerPrefs.GetFloat("sens");
+        yRotation += mouseX * sensitivity * multiplier;
+        xRotation -= +mouseY * sensitivity * multiplier;
 
         //Clamp our vertical cam movement so it can't look farther than straight up or down.
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
