@@ -5,10 +5,25 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/CarterLevel2.unity
-    guid: d13b91b582d778347a9589732e49d4a1
   - enabled: 1
-    path: Assets/Scenes/CarterLevel1.unity
+    path: Assets/Scenes/MainMenu.unity
+    guid: 3bc6ead31b14e9440a7b5c6f3cf50e3d
+  - enabled: 1
+    path: Assets/Scenes/ChasmPlatformer.unity
+    guid: adb0bfc76cfde7e42a573b05dc2b06eb
+  - enabled: 1
+    path: Assets/Scenes/Gauntlet.unity
+    guid: a6cacb5a384ce7043b3f8ac559bbd8ec
+  - enabled: 1
+    path: Assets/Scenes/HallwayOfDeath.unity
+    guid: 3bca6e32d0fe4e24da25baefabbba24e
+  - enabled: 1
+    path: Assets/Scenes/FloorIsLava.unity
+    guid: 5c2fb41e70f46d24caabd5537ab1a778
+  - enabled: 1
+    path: Assets/Scenes/Ambush.unity
     guid: 7f06c46bec806004aa47573c96c72c17
+  - enabled: 1
+    path: Assets/Scenes/Tower.unity
+    guid: d13b91b582d778347a9589732e49d4a1
   m_configObjects: {}

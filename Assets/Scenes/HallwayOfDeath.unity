@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: b276c412f557dd04da4e5621b038660c,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -5933,7 +5934,7 @@ PrefabInstance:
     - target: {fileID: 5013216267524197141, guid: 6a9360704cdcba546867dfc2008dd2d5,
         type: 3}
       propertyPath: sensitivity
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5013216267524197142, guid: 6a9360704cdcba546867dfc2008dd2d5,
         type: 3}
