@@ -52,14 +52,11 @@ public class PlayerController : MonoBehaviour
     public AudioSource slowShot;
 
 
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        /*
-        speedShot = GetComponent<AudioSource>();
-        slowShot = GetComponent<AudioSource>();
-        deathSound = GetComponent<AudioSource>();
-        */
+
         //Make sure player doesn't spin from forces
         rb.freezeRotation = true;
         isDead = false;
@@ -213,11 +210,7 @@ public class PlayerController : MonoBehaviour
         canFire = true;
     }
 
-    //camera dying slightly slower to allow death sound to play
-    IEnumerator Dying()
-    {
-        yield return new WaitForSecondsRealtime(0.1f);
-        
-    }
+
+
 
 }

@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
     public bool invincibility = false;
 
     public AudioSource deathSound;
+    public AudioSource BGM1;
 
     private void Start()
     {
@@ -27,6 +28,8 @@ public class GameController : MonoBehaviour
         deathOverlay.enabled = false;
         deathText.enabled = false;
         dead = false;
+        BGM1.loop = true;
+        BGM1.Play();
     }
 
     void Update()

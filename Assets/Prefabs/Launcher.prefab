@@ -125,7 +125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f23be1ca573f6f41afbfb6d706a3ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SlowSound: {fileID: 0}
   speed: 6
   lerpDistance: 5
   launchForce: 6
@@ -202,7 +201,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
