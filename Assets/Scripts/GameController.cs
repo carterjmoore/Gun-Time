@@ -34,12 +34,22 @@ public class GameController : MonoBehaviour
     public bool enableShooters = true;
     public bool invincibility = false;
 
+    public AudioSource deathSound;
+    public AudioSource BGM1;
+
     private void Start()
     {
         hideUI();
         lockCursor();
         crosshair.enabled = true;
+
         paused = false;
+
+        deathOverlay.enabled = false;
+        deathText.enabled = false;
+        dead = false;
+        BGM1.loop = true;
+        BGM1.Play();
     }
 
     void Update()
@@ -111,6 +121,7 @@ public class GameController : MonoBehaviour
 
     public void UnPause()
     {
+
         Time.timeScale = 1;
         crosshair.enabled = true;
         lockCursor();
@@ -137,6 +148,7 @@ public class GameController : MonoBehaviour
     private void hideUI()
     {
         //Hide win/lose UI elements
+         deathSound.Play();
         winOverlay.enabled = false;
         deathOverlay.enabled = false;
         winLoseText.enabled = false;
@@ -155,6 +167,13 @@ public class GameController : MonoBehaviour
         button.image.enabled = false;
         button.enabled = false;
         button.GetComponentInChildren<TextMeshProUGUI>().enabled = false;
+
+       
+        deathOverlay.enabled = true;
+        deathText.enabled = true;
+        crosshair.enabled = false;
+        dead = true;
+
     }
 
     void enableButton(Button button)

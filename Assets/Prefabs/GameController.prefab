@@ -1793,11 +1793,13 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+
   - component: {fileID: 5867398911413430468}
   - component: {fileID: 2336241401692887194}
   - component: {fileID: 8152365752994339357}
   m_Layer: 5
   m_Name: Text
+
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1921,6 +1923,7 @@ MonoBehaviour:
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &9206145321915275086
+
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

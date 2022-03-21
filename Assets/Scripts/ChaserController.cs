@@ -32,11 +32,14 @@ public class ChaserController : ShootableEntity
 
     bool reachedTarget;
     bool haveAdjustedTarget;
+    public AudioSource AttackSound;
+
 
 
     protected override void Start()
     {
         base.Start();
+        AttackSound = GetComponent<AudioSource>();
         playerController = player.GetComponent<PlayerController>();
         rb = transform.GetComponent<Rigidbody>();
         targetPos = transform.position;
@@ -51,9 +54,15 @@ public class ChaserController : ShootableEntity
 
     void FixedUpdate()
     {
-        if (!gameController.chasersEnabled())
+        //Make sure chasers don't look at player or update player last seen position when frozen
+        if (timeMultiplier() == 0 || !gameController.chasersEnabled())
         {
-           return;
+            rb.freezeRotation = true;
+            return;
+        }
+        else
+        {
+            rb.freezeRotation = false;
         }
 
         isGrounded = Physics.CheckBox(transform.position - new Vector3(0, 0.4f, 0), new Vector3(0.6f, 0.2f, 0.6f), transform.rotation, ~ignoreMask);
@@ -185,6 +194,7 @@ public class ChaserController : ShootableEntity
     {
         if(collision.gameObject == player)
         {
+            AttackSound.Play();
             playerController.TriggerDeath();
         }
     }
