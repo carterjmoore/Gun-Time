@@ -108,7 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e1bbdc0179c874f8af08800e0fc16b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SlowSound: {fileID: 0}
   speed: 6
   pos2: {x: 0, y: 0, z: 0}
 --- !u!54 &4958174786347812467

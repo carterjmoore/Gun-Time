@@ -13,9 +13,9 @@ public class MovingLaserController : MonoBehaviour
     float distance;
     float fraction;
     bool movingBack;
-    public AudioSource LaserNoise;
+
     // Start is called before the first frame update
-    void Start()
+     void Start()
     {
         pos1 = transform.position;
         distance = Vector3.Distance(pos1, pos2);
@@ -44,19 +44,12 @@ public class MovingLaserController : MonoBehaviour
 
 
      void OnTriggerEnter(Collider other)
-     {
-        if (other.gameObject.CompareTag("Player"))
-        {
+    {
+        if (other.gameObject.CompareTag("Player")){
             other.gameObject.GetComponent<PlayerController>().TriggerDeath();
-            LaserNoise.Play();
-
         }
 
         //Allow to fire through other enemies
-        else if (other.gameObject.CompareTag("PhysEnemy"))
-        {
-            Destroy(other.gameObject);
-            LaserNoise.Play();
-        }
-     }
+        else if(other.gameObject.CompareTag("PhysEnemy")) Destroy(other.gameObject);
+    }
 }

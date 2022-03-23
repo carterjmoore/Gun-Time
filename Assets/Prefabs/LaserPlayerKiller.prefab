@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4940c0f310d314da33f53f3b37ee2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LaserNoise: {fileID: 1089222390219054956}
 --- !u!1001 &7962764115158734582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -111,12 +110,6 @@ PrefabInstance:
 --- !u!1 &4131487013882504757 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6328848623129374915, guid: 86a8e3e677dcd224fa4ecb45eb1a7257,
-    type: 3}
-  m_PrefabInstance: {fileID: 7962764115158734582}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &1089222390219054956 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: -2189635384753059430, guid: 86a8e3e677dcd224fa4ecb45eb1a7257,
     type: 3}
   m_PrefabInstance: {fileID: 7962764115158734582}
   m_PrefabAsset: {fileID: 0}

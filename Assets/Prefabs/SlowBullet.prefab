@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 769898284992133615}
   - component: {fileID: 7159784509662418413}
   - component: {fileID: 4416555887825725545}
-  m_Layer: 1
+  m_Layer: 0
   m_Name: InnerHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 4209192674000990402}
   - component: {fileID: 1405890945319502128}
   - component: {fileID: 1510919838265505504}
-  m_Layer: 1
+  m_Layer: 0
   m_Name: SlowBullet
   m_TagString: Slow
   m_Icon: {fileID: 0}
