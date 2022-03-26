@@ -9,6 +9,7 @@ using TMPro;
 public class GameController : MonoBehaviour
 {
     private bool paused;
+    private bool gameOver;
 
     public string nextLevelName;
     public RawImage crosshair;
@@ -40,6 +41,7 @@ public class GameController : MonoBehaviour
         lockCursor();
         crosshair.enabled = true;
         paused = false;
+        gameOver = false;
     }
 
     void Update()
@@ -50,8 +52,8 @@ public class GameController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I)) invincibility = !invincibility;
 
         if (Input.GetKeyDown(KeyCode.R)) Retry();
-        if (!paused && Input.GetKeyDown(KeyCode.Escape)) Pause();
-        else if (paused && Input.GetKeyDown(KeyCode.Escape)) UnPause();
+        if (!gameOver && !paused && Input.GetKeyDown(KeyCode.Escape)) Pause();
+        else if (!gameOver && !paused && Input.GetKeyDown(KeyCode.Escape)) UnPause();
     }
 
     public bool chasersEnabled() { return enableChasers; }
@@ -74,6 +76,8 @@ public class GameController : MonoBehaviour
         winLoseText.enabled = true;
         enableButton(mainMenuButton);
         enableButton(retryButton);
+
+        gameOver = true;
     }
 
     public void TriggerWin()
@@ -98,6 +102,8 @@ public class GameController : MonoBehaviour
             winLoseText.text = "LEVEL\nCOMPLETE";
             enableButton(nextLevelButton);
         }
+
+        gameOver = true;
     }
 
     public void Pause()
