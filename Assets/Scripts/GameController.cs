@@ -46,8 +46,6 @@ public class GameController : MonoBehaviour
         paused = false;
         gameOver = false;
         deathOverlay.enabled = false;
-        deathText.enabled = false;
-        dead = false;
         BGM1.loop = true;
         BGM1.Play();
     }
@@ -61,7 +59,7 @@ public class GameController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R)) Retry();
         if (!gameOver && !paused && Input.GetKeyDown(KeyCode.Escape)) Pause();
-        else if (!gameOver && !paused && Input.GetKeyDown(KeyCode.Escape)) UnPause();
+        else if (!gameOver && paused && Input.GetKeyDown(KeyCode.Escape)) UnPause();
     }
 
     public bool chasersEnabled() { return enableChasers; }

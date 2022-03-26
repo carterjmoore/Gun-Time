@@ -185,7 +185,6 @@ public class PlayerController : MonoBehaviour
     //Handle player death
     public void TriggerDeath()
     {
-        Debug.Log("Death!");
         if (gameController.invincible()) return;
 
         isDead = true;

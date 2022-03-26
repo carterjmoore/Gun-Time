@@ -30,7 +30,6 @@ public class ShootableEntity : MonoBehaviour
         SlowSound.clip = Resources.Load<AudioClip>("slowSound");
         SlowSound.spatialBlend = 1.0f;
         SpeedSound.spatialBlend = 1.0f;
-
     }
 
     protected virtual void Update()
@@ -52,14 +51,12 @@ public class ShootableEntity : MonoBehaviour
             StartCoroutine(TimeJustChanged());
             Destroy(other.gameObject);
             SlowSound.Play();
-            Debug.Log("Slowed!");
             gotSlowed();
         }
         if (other.gameObject.CompareTag("Speed") && !timeJustChanged)
         {
             StartCoroutine(TimeJustChanged());
             Destroy(other.gameObject);
-            Debug.Log("Speed!");
             SpeedSound.Play();
             gotSpeed();
         }
