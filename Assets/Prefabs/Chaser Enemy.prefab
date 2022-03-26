@@ -124,7 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2175f085ff82f3479d476f4a5355131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SlowSound: {fileID: 0}
   speed: 5.9
   movementMultiplier: 10
   airMovementMultiplier: 0
@@ -133,7 +132,7 @@ MonoBehaviour:
   chaseThroughLasers: 1
   ignoreMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 514
   player: {fileID: 5013216267524197143, guid: 6a9360704cdcba546867dfc2008dd2d5, type: 3}
   gameController: {fileID: 3302158445614174852, guid: 93ae09d420f1dad47a5444e833c1d553,
     type: 3}
