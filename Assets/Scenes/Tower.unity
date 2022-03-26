@@ -4115,11 +4115,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5013216267524197137, guid: 6a9360704cdcba546867dfc2008dd2d5,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5013216267524197137, guid: 6a9360704cdcba546867dfc2008dd2d5,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5013216267524197138, guid: 6a9360704cdcba546867dfc2008dd2d5,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5013216267524197139, guid: 6a9360704cdcba546867dfc2008dd2d5,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 2244764117fd4a04180fbd5e83abbe14,
+        type: 2}
     - target: {fileID: 5013216267524197140, guid: 6a9360704cdcba546867dfc2008dd2d5,
         type: 3}
       propertyPath: speed
@@ -8755,6 +8771,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6092719387942785250, guid: 3647f125e88c9a14daaac63df34f6886,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 2244764117fd4a04180fbd5e83abbe14,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3647f125e88c9a14daaac63df34f6886, type: 3}
 --- !u!1001 &1564574946
