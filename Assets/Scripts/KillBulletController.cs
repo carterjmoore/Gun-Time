@@ -5,6 +5,7 @@ using UnityEngine;
 public class KillBulletController : MonoBehaviour
 {
     public Vector3 velocity;
+    public AudioSource gotShot;
 
     // Update is called once per frame
     void Update()
@@ -24,7 +25,10 @@ public class KillBulletController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+
         if (other.gameObject.CompareTag("Player")){
+            gotShot.Play();
+
             other.gameObject.GetComponent<PlayerController>().TriggerDeath();
         }
     }
