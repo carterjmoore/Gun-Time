@@ -94,7 +94,7 @@ public class MainMenuController : MonoBehaviour
 
     public void LoadChasm()
     {
-        SceneManager.LoadScene("ChasmPlatformer");
+        SceneManager.LoadScene("Chasm");
     }
 
     public void LoadGauntlet()

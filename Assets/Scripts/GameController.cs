@@ -49,6 +49,7 @@ public class GameController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G)) enableShooters = !enableShooters;
         if (Input.GetKeyDown(KeyCode.I)) invincibility = !invincibility;
 
+        if (Input.GetKeyDown(KeyCode.R)) Retry();
         if (!paused && Input.GetKeyDown(KeyCode.Escape)) Pause();
         else if (paused && Input.GetKeyDown(KeyCode.Escape)) UnPause();
     }
@@ -84,11 +85,19 @@ public class GameController : MonoBehaviour
         setButtonPosY(mainMenuButton, -150f);
 
         //Show UI
-        winOverlay.enabled = true;
-        winLoseText.text = "LEVEL\nCOMPLETE";
         winLoseText.enabled = true;
         enableButton(mainMenuButton);
-        enableButton(nextLevelButton);
+
+        //Show next level button only if it is not the last level
+        if(nextLevelName == "End")
+        {
+            winLoseText.text = "FINAL LEVEL\nCOMPLETE";
+        }
+        else
+        {
+            winLoseText.text = "LEVEL\nCOMPLETE";
+            enableButton(nextLevelButton);
+        }
     }
 
     public void Pause()
@@ -128,11 +137,17 @@ public class GameController : MonoBehaviour
         optionsController.Show();
     }
 
-    public void ToMainMenu() { SceneManager.LoadScene("MainMenu"); }
+    public void ToMainMenu() {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MainMenu"); 
+    }
 
     public void NextLevel() { SceneManager.LoadScene(nextLevelName); }
 
-    public void Retry() { SceneManager.LoadScene(SceneManager.GetActiveScene().name); }
+    public void Retry() {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+    }
 
     private void hideUI()
     {
