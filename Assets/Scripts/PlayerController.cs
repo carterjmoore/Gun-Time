@@ -206,4 +206,22 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSecondsRealtime(reloadTime);
         canFire = true;
     }
+
+    public bool PlayerCanFire()
+    {
+        return canFire;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("GunPickUp"))
+        {
+            canFire = true;
+
+            if (other.gameObject.GetComponent<BoxCollider>().isTrigger == true)
+            {
+                other.gameObject.GetComponent<BoxCollider>().enabled = false;
+            }
+        }
+    }
 }
