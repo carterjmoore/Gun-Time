@@ -25,4 +25,13 @@ public class BulletController : MonoBehaviour
         transform.position = pos;
         velocity = vel;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Kill"))
+        {
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
+    }
 }

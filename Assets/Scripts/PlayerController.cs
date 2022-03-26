@@ -48,10 +48,15 @@ public class PlayerController : MonoBehaviour
     public GameObject SlowBullet;
 
     public GameObject Camera;
+    public AudioSource speedShot;
+    public AudioSource slowShot;
+
+
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+
         //Make sure player doesn't spin from forces
         rb.freezeRotation = true;
         isDead = false;
@@ -60,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (isDead)
+        if (isDead || gameController.isPaused())
         {
             return;
         }
@@ -97,6 +102,8 @@ public class PlayerController : MonoBehaviour
         //fire speed bullet
         if(Input.GetButton("Fire1") && canFire)
         {
+            speedShot.Play();
+
             GameObject b = Instantiate(SpeedBullet, new Vector3(0f, 0f, 0f), Quaternion.identity);
 
             //offset it, then give initial velocity (the second argument of the initprojectile is the speed)
@@ -108,6 +115,8 @@ public class PlayerController : MonoBehaviour
         //fire slow bullet
         if (Input.GetButton("Fire2") && canFire)
         {
+            slowShot.Play();
+
             GameObject b = Instantiate(SlowBullet, new Vector3(0f, 0f, 0f), Quaternion.identity);
 
             b.GetComponent<BulletController>().InitProjectile(transform.position + Camera.transform.forward * 2.0f, Camera.transform.forward * bulletSpeed);
@@ -180,9 +189,11 @@ public class PlayerController : MonoBehaviour
 
         isDead = true;
         //Alert other entities of death
+
+
         GetComponent<CameraController>().TriggerDeath();
-        gameController.TriggerDeath();
         cameraHolder.TriggerDeath();
+        gameController.TriggerDeath();
 
         //Stop movement after death
         rb.constraints = RigidbodyConstraints.FreezeAll;
@@ -197,4 +208,8 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSecondsRealtime(reloadTime);
         canFire = true;
     }
+
+
+
+
 }

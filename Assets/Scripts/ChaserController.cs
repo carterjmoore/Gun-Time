@@ -32,11 +32,14 @@ public class ChaserController : ShootableEntity
 
     bool reachedTarget;
     bool haveAdjustedTarget;
+    public AudioSource AttackSound;
+
 
 
     protected override void Start()
     {
         base.Start();
+        AttackSound = GetComponent<AudioSource>();
         playerController = player.GetComponent<PlayerController>();
         rb = transform.GetComponent<Rigidbody>();
         targetPos = transform.position;
@@ -49,45 +52,51 @@ public class ChaserController : ShootableEntity
         if (!chaseThroughLasers) ignoreMask = LayerMask.GetMask("TransparentFX");
     }
 
-    void FixedUpdate()
+    private void Update()
     {
+        //Find new target
+        updateTarget();
+
         //Make sure chasers don't look at player or update player last seen position when frozen
+        //Also forget last seen position when frozen
         if (timeMultiplier() == 0 || !gameController.chasersEnabled())
         {
-            rb.freezeRotation = true;
+            targetPos = transform.position;
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
             return;
         }
+        //Look up ramp if on slope
+        else if (onSlope())
+        {
+            Debug.DrawRay(transform.position, Vector3.ProjectOnPlane(targetPos - transform.position, slopeHit.normal), Color.red);
+            transform.LookAt(Vector3.ProjectOnPlane(targetPos - transform.position, slopeHit.normal) + new Vector3(0f, 1f, 0f));
+            rb.constraints = RigidbodyConstraints.None;
+        }
+        //Otherwise look in direction of player, but parallel to ground
         else
         {
-            rb.freezeRotation = false;
+            Debug.DrawRay(transform.position, targetPos - transform.position, Color.red);
+            transform.LookAt(new Vector3(targetPos.x, transform.position.y, targetPos.z));
+            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationX;
         }
+    }
+
+    void FixedUpdate()
+    {
+        //Make sure chasers don't update anything or move around walls if frozen
+        if (timeMultiplier() == 0 || !gameController.chasersEnabled())
+        {
+            return;
+        }
+
+        //If player is dead, do nothing
+        if (playerController.IsDead()) return;
 
         isGrounded = Physics.CheckBox(transform.position - new Vector3(0, 0.4f, 0), new Vector3(0.6f, 0.2f, 0.6f), transform.rotation, ~ignoreMask);
         setDrag();
 
-        //If player is visible, look at player and set targetPos to player's pos
-        if (playerVisible())
-        {
-            //Look up ramp if going up ramp
-            if (onSlope())
-            {
-                transform.LookAt(Vector3.ProjectOnPlane(getTargetDir(), slopeHit.normal));
-            }
-            else
-            {
-                transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
-            }
-            targetPos = player.transform.position;
-            haveAdjustedTarget = false;
-        }
-
-        //If just lost sight of player, set targetPos to slightly ahead of its current position, to make sure chaser gets around corner
-        else if (!haveAdjustedTarget)
-        {
-            targetPos += getTargetDir() * 1f;
-            StartCoroutine(setPlayerPosRightAfterLostLOS());
-            haveAdjustedTarget = true;
-        }
+        //Find new target
+        updateTarget();
 
         //Avoid walls
         moveAroundWalls();
@@ -96,6 +105,23 @@ public class ChaserController : ShootableEntity
         if (!playerController.IsDead())
         {
             moveToTarget();
+        }
+    }
+
+    void updateTarget()
+    {
+        //If player is visible, look at player and set targetPos to player's pos
+        if (playerVisible())
+        {
+            targetPos = player.transform.position;
+            haveAdjustedTarget = false;
+        }
+        //If just lost sight of player, set targetPos to slightly ahead of its current position, to make sure chaser gets around corner
+        else if (!haveAdjustedTarget)
+        {
+            targetPos += getTargetDir() * 1f;
+            StartCoroutine(setPlayerPosRightAfterLostLOS());
+            haveAdjustedTarget = true;
         }
     }
 
@@ -127,7 +153,7 @@ public class ChaserController : ShootableEntity
             reachedTarget = false;
 
             //If on slope, add force along slope. Otherwise, add force toward target
-            Vector3 moveDirection = onSlope() ? Vector3.ProjectOnPlane(getTargetDir(), slopeHit.normal) : getTargetDir();
+            Vector3 moveDirection = onSlope() ? Vector3.ProjectOnPlane(targetPos-transform.position, slopeHit.normal).normalized : getTargetDir();
             float multiplier = isGrounded ? movementMultiplier : movementMultiplier*airMovementMultiplier;
             rb.AddForce(speed * multiplier * moveDirection * timeMultiplier(), ForceMode.Acceleration);
         }
@@ -191,6 +217,7 @@ public class ChaserController : ShootableEntity
     {
         if(collision.gameObject == player)
         {
+            AttackSound.Play();
             playerController.TriggerDeath();
         }
     }

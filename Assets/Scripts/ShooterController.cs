@@ -21,6 +21,9 @@ public class ShooterController : ShootableEntity
 
     bool canAttack;
 
+    public AudioSource AttackSound;
+
+
     protected override void Start()
     {
         base.Start();
@@ -32,9 +35,15 @@ public class ShooterController : ShootableEntity
 
     void FixedUpdate()
     {
-        if (!gameController.shootersEnabled())
+        //Make sure shooters don't look at player if frozen
+        if (timeMultiplier() == 0 || !gameController.shootersEnabled())
         {
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
             return;
+        }
+        else
+        {
+            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationX;
         }
 
         //Check if player is dead and if the player is visible
@@ -49,6 +58,7 @@ public class ShooterController : ShootableEntity
     {
         if (canAttack && timeMultiplier() != 0)
         {
+            AttackSound.Play();
             GameObject firedProjectile = Instantiate(projectileType, transform.position, Quaternion.identity);
             Physics.IgnoreCollision(firedProjectile.GetComponent<Collider>(), GetComponent<Collider>());
 
