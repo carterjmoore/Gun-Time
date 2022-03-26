@@ -116,7 +116,7 @@ public class LauncherController : ShootableEnvironment
     {
         if (launch && fastEnoughToLaunch() && other.attachedRigidbody)
         {
-            LaunchSound.Play();
+            AudioSource.PlayClipAtPoint(LaunchSound.clip, other.transform.position);
             Launch(other);
         }
     }
