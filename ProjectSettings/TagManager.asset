@@ -11,6 +11,7 @@ TagManager:
   - Laser
   - Kill
   - Trigger
+  - GunPickUp
   layers:
   - Default
   - TransparentFX
