@@ -8387,7 +8387,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TUTORIAL
+  m_text: INTRODUCTION
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3367ca1543f3daa4b9433c75f73eb4f9, type: 2}
   m_sharedMaterial: {fileID: -1567493874573719632, guid: 3367ca1543f3daa4b9433c75f73eb4f9,
@@ -10215,7 +10215,7 @@ MonoBehaviour:
   levelsButton: {fileID: 1187866101}
   optionsButton: {fileID: 2063346887}
   quitButton: {fileID: 294732560}
-  tutorialButton: {fileID: 1737482063}
+  introductionButton: {fileID: 1737482063}
   chasmButton: {fileID: 1022014959}
   gauntletButton: {fileID: 1817249241}
   hallwayButton: {fileID: 158801944}
@@ -10529,6 +10529,7 @@ GameObject:
   - component: {fileID: 1574800252}
   - component: {fileID: 1574800251}
   - component: {fileID: 1574800254}
+  - component: {fileID: 1574800255}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -10614,6 +10615,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
+--- !u!114 &1574800255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574800250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1001 &1583287231
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11727,7 +11759,7 @@ GameObject:
   - component: {fileID: 1737482064}
   - component: {fileID: 1737482063}
   m_Layer: 5
-  m_Name: TutorialButton
+  m_Name: IntroductionButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11751,7 +11783,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 423.936}
-  m_SizeDelta: {x: 450, y: 70}
+  m_SizeDelta: {x: 650, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1737482063
 MonoBehaviour:
@@ -11797,7 +11829,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1468796130}
-        m_MethodName: LoadTutorial
+        m_MethodName: LoadIntroduction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
