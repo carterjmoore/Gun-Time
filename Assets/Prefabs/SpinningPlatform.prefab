@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aeee7071bea0a4c478b4fea5933c5f79, type: 2}
+  - {fileID: 2100000, guid: 4c0c802345da9b144b920deba630d4c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,8 +109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6e84f464ed29949a7d2f260e3def0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeedSound: {fileID: 6494862862619446687}
-  SlowSound: {fileID: 8897588064954989312}
   knockbackForce: 2000
   rotationSpeed: 90
 --- !u!65 &8878642296870670983
