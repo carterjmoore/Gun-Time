@@ -60,7 +60,16 @@ public class PlayerController : MonoBehaviour
         //Make sure player doesn't spin from forces
         rb.freezeRotation = true;
         isDead = false;
-        canFire = true;
+        if (SceneManager.GetActiveScene().name == "Introduction")
+        {
+            canFire = false;
+        }
+        else
+        {
+            canFire = true;
+        }
+
+
     }
 
     private void Update()
@@ -210,6 +219,16 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("GunPickUp"))
+        {
+            canFire = true;
 
-
+            if (other.gameObject.GetComponent<BoxCollider>().isTrigger == true)
+            {
+                other.gameObject.GetComponent<BoxCollider>().enabled = false;
+            }
+        }
+    }
 }

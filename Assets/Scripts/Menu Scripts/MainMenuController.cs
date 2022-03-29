@@ -14,7 +14,7 @@ public class MainMenuController : MonoBehaviour
     public Button quitButton;
 
     //Level select stuff
-    public Button tutorialButton;
+    public Button introductionButton;
     public Button chasmButton;
     public Button gauntletButton;
     public Button hallwayButton;
@@ -40,7 +40,7 @@ public class MainMenuController : MonoBehaviour
         enableButton(quitButton);
 
         //Hide level select stuff
-        disableButton(tutorialButton);
+        disableButton(introductionButton);
         disableButton(chasmButton);
         disableButton(gauntletButton);
         disableButton(hallwayButton);
@@ -62,7 +62,7 @@ public class MainMenuController : MonoBehaviour
         disableButton(quitButton);
 
         //Show level select stuff
-        enableButton(tutorialButton);
+        enableButton(introductionButton);
         enableButton(chasmButton);
         enableButton(gauntletButton);
         enableButton(hallwayButton);
@@ -87,9 +87,9 @@ public class MainMenuController : MonoBehaviour
         Application.Quit();
     }
 
-    public void LoadTutorial()
+    public void LoadIntroduction()
     {
-        SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene("Introduction");
     }
 
     public void LoadChasm()
