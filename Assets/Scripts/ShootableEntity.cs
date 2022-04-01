@@ -7,10 +7,15 @@ public class ShootableEntity : MonoBehaviour
 {
     //Represents current slow/speed status. Negative means slowed, positive means sped up
     protected int timeStatus;
+
     //The max magnitude for timeStatus (positive or negative)
     int maxStatus;
     private AudioSource SpeedSound;
     private AudioSource SlowSound;
+
+    public Material defaultMat;
+    public Material slowMat;
+    public Material speedMat;
 
     bool timeJustChanged;
 
@@ -73,12 +78,13 @@ public class ShootableEntity : MonoBehaviour
     protected virtual void gotSlowed()
     {
         timeStatus = Mathf.Max(timeStatus - 1, -maxStatus);
-
+        setMaterial();
     }
 
     protected virtual void gotSpeed()
     {
         timeStatus = Mathf.Min(timeStatus + 1, maxStatus);
+        setMaterial();
     }
 
     //For some reason, time status was getting applied twice sometimes, so this is a bandaid to fix it
@@ -88,5 +94,12 @@ public class ShootableEntity : MonoBehaviour
         timeJustChanged = true;
         yield return new WaitForEndOfFrame();
         timeJustChanged = false;
+    }
+
+    protected void setMaterial()
+    {
+        if (timeStatus > 0) gameObject.GetComponent<Renderer>().material = speedMat;
+        else if (timeStatus < 0) gameObject.GetComponent<Renderer>().material = slowMat;
+        else gameObject.GetComponent<Renderer>().material = defaultMat;
     }
 }

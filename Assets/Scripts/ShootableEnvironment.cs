@@ -9,8 +9,6 @@ public class ShootableEnvironment : ShootableEntity
     bool reducing;
     Coroutine routine;
 
-
-
     protected override void Start()
     {
         base.Start();
@@ -34,6 +32,7 @@ public class ShootableEnvironment : ShootableEntity
         {
             //If timestatus is positive, reduce it by one, if it is negative, increase it by one
             timeStatus = (timeStatus > 0) ? --timeStatus : ++timeStatus;
+            setMaterial();
         }
         reducing = false;
     }

@@ -54,6 +54,8 @@ public class ChaserController : ShootableEntity
 
     private void Update()
     {
+        base.Update();
+
         //Find new target
         updateTarget();
 
