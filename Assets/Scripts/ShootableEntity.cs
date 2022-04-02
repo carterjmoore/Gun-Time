@@ -35,6 +35,8 @@ public class ShootableEntity : MonoBehaviour
         SlowSound.clip = Resources.Load<AudioClip>("slowSound");
         SlowSound.spatialBlend = 1.0f;
         SpeedSound.spatialBlend = 1.0f;
+
+        setMaterial();
     }
 
     protected virtual void Update()

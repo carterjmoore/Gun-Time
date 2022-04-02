@@ -52,7 +52,7 @@ public class ChaserController : ShootableEntity
         if (!chaseThroughLasers) ignoreMask = LayerMask.GetMask("TransparentFX");
     }
 
-    private void Update()
+    protected override void Update()
     {
         base.Update();
 
