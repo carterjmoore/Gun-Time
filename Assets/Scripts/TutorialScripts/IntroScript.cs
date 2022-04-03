@@ -73,7 +73,7 @@ public class IntroScript : MonoBehaviour
         dialogueManager.GetComponent<DialogueManager>().PlayerSay("| Navigations Online", 34, true);
         dialogueManager.GetComponent<DialogueManager>().PlayerSay("[Movement]:\nW A S D", 37, true);
 
-        dialogueManager.GetComponent<DialogueManager>().PlayerSay("[???]: What did you already forget why you're here?", 0, false);
+        dialogueManager.GetComponent<DialogueManager>().PlayerSay("[???]: What, did you already forget why you're here?", 0, false);
         dialogueManager.GetComponent<DialogueManager>().PlayerSay("[???]: You must have knocked your head pretty hard. Well re-focus, because we're hitting something big.", 5, false);
         dialogueManager.GetComponent<DialogueManager>().PlayerSay("[???]: As of now you currently reside in the HexUS Corps Headquarters, curtasy of your pal [-EEVL_I-].", 13, false);
         dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: Of course I am your loyal companion who maintains a studious field in digital technics!", 21, false);
@@ -81,6 +81,6 @@ public class IntroScript : MonoBehaviour
         yield return new WaitForSeconds(37);
         player.GetComponent<PlayerController>().movementMultiplier = 10.0f;
 
-        dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: Your Motion Navs are back online! Head to that door on your right.", 0, false);
+        dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: Your Motion Navs are back online! Head to that door over there.", 0, false);
     }
 }
