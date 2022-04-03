@@ -73,10 +73,10 @@ public class IntroScript : MonoBehaviour
         dialogueManager.GetComponent<DialogueManager>().PlayerSay("| Navigations Online", 41, true);
         dialogueManager.GetComponent<DialogueManager>().PlayerSay("[Movement]:\nW A S D", 45, true);
 
-        dialogueManager.GetComponent<DialogueManager>().PlayerSay("[???]: What did you already forget why your here?", 0, false);
+        dialogueManager.GetComponent<DialogueManager>().PlayerSay("[???]: What did you already forget why you're here?", 0, false);
         dialogueManager.GetComponent<DialogueManager>().PlayerSay("[???]: You must have knocked your head pretty hard. Well re-focus, because we're hitting something big.", 5, false);
         dialogueManager.GetComponent<DialogueManager>().PlayerSay("[???]: As of now you currently reside in the HexUS Corps Headquarters, curtasy of your pal [-EEVL_I-].", 15, false);
-        dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: Of course I am your loyal companion, conveniently a techincal overlord of all the city's systems!", 25, false);
+        dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: Of course I am your loyal companion who maintains a studious field in digital technics!", 25, false);
         dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: Too bad I am limited to the visuals of your visor but I'm more than capable of helping you.", 35, false);
         yield return new WaitForSeconds(45);
         player.GetComponent<PlayerController>().movementMultiplier = 10.0f;
