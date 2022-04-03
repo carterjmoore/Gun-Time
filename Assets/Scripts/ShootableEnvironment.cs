@@ -9,6 +9,8 @@ public class ShootableEnvironment : ShootableEntity
     bool reducing;
     Coroutine routine;
 
+
+
     protected override void Start()
     {
         base.Start();

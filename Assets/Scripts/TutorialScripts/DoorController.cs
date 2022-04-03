@@ -66,7 +66,7 @@ public class DoorController : ShootableEnvironment
         }
         else
         {
-            if (!waitingToGoForward)
+            if (!movingBack && !waitingToGoForward)
             {
                 fraction += speed / distance * timeMultiplier() * Time.deltaTime;
                 fraction = Mathf.Clamp01(fraction);
@@ -74,6 +74,7 @@ public class DoorController : ShootableEnvironment
                 if (fraction == 1)
                 {
                     waitingToGoBack = true;
+                    movingBack = true;
                 }
             }
             else if (!waitingToGoBack)
@@ -81,6 +82,10 @@ public class DoorController : ShootableEnvironment
                 fraction -= speed / distance * timeMultiplier() * Time.deltaTime;
                 fraction = Mathf.Clamp01(fraction);
                 transform.position = Vector3.Lerp(pos1, pos2, fraction);
+                if (fraction == 0)
+                {
+                    movingBack = false;
+                }
             }
         }
     }
@@ -102,6 +107,7 @@ public class DoorController : ShootableEnvironment
         if (waitingToGoBack)
         {
             waitingToGoBack = false;
+            waitingToGoForward = true;
         }
     }
     public void CloseDoor() //If the door is open, then Close the Door, otherwise keep it open

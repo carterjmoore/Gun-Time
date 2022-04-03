@@ -46,8 +46,15 @@ public class GameController : MonoBehaviour
         paused = false;
         gameOver = false;
         deathOverlay.enabled = false;
-        BGM1.loop = true;
-        BGM1.Play();
+
+        enableChasers = true;
+        enableShooters = true;
+        invincibility = false;
+
+        if (SceneManager.GetActiveScene().name != "Introduction") {
+            BGM1.loop = true;
+            BGM1.Play();
+        }
     }
 
     void Update()
