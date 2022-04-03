@@ -46,8 +46,10 @@ public class GameController : MonoBehaviour
         paused = false;
         gameOver = false;
         deathOverlay.enabled = false;
-        BGM1.loop = true;
-        BGM1.Play();
+        if (SceneManager.GetActiveScene().name != "Tutorial") {
+            BGM1.loop = true;
+            BGM1.Play();
+        }
     }
 
     void Update()

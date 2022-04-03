@@ -399,7 +399,7 @@ MonoBehaviour:
   airMultiplier: 0.3
   jumpForce: 11
   bulletSpeed: 18
-  reloadTime: 1
+  reloadTime: 0.7
   groundDrag: 6
   airDrag: 1.5
   groundMask:
