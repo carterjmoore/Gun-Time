@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,8 +11,6 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(liveType("Hello User MANN WATRARWRAWEASDWASDWAS!", false));
-        StartCoroutine(liveType("[Movement]: W, A, S, D", true));
     }
 
     // Update is called once per frame
@@ -22,8 +19,26 @@ public class DialogueManager : MonoBehaviour
         
     }
 
-    IEnumerator liveType(string dialogue, bool isMinipop)
+    public void PlayerSay(string toWrite, float delay, bool mini)
     {
+        StartCoroutine(LiveType(toWrite, delay, mini));
+    }
+
+    public void BlankPlayerSay(bool isMinipop)
+    {
+        if (!isMinipop)
+        {
+            dialogueText.text = "";
+        }
+        else
+        {
+            minipopText.text = "";
+        }
+    }
+
+    IEnumerator LiveType(string dialogue, float delay, bool isMinipop)
+    {
+        yield return new WaitForSeconds(delay);
         if (!isMinipop)
         {
             dialogueText.text = "";
@@ -42,8 +57,6 @@ public class DialogueManager : MonoBehaviour
                 yield return new WaitForSeconds(0.05f);
             }
         }
-
-
-
     }
+
 }

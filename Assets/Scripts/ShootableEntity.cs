@@ -9,6 +9,8 @@ public class ShootableEntity : MonoBehaviour
     protected int timeStatus;
     //The max magnitude for timeStatus (positive or negative)
     int maxStatus;
+    private AudioSource SpeedSound;
+    private AudioSource SlowSound;
 
     bool timeJustChanged;
 
@@ -17,6 +19,17 @@ public class ShootableEntity : MonoBehaviour
         timeStatus = 0;
         maxStatus = 3;
         timeJustChanged = false;
+        //SpeedSound.playOnAwake = false;
+        SpeedSound = gameObject.AddComponent<AudioSource>();
+
+        SpeedSound.clip = Resources.Load<AudioClip>("speedSound");
+
+        //SlowSound.playOnAwake = false;
+        SlowSound = gameObject.AddComponent<AudioSource>();
+
+        SlowSound.clip = Resources.Load<AudioClip>("slowSound");
+        SlowSound.spatialBlend = 1.0f;
+        SpeedSound.spatialBlend = 1.0f;
     }
 
     protected virtual void Update()
@@ -37,12 +50,14 @@ public class ShootableEntity : MonoBehaviour
         {
             StartCoroutine(TimeJustChanged());
             Destroy(other.gameObject);
+            SlowSound.Play();
             gotSlowed();
         }
         if (other.gameObject.CompareTag("Speed") && !timeJustChanged)
         {
             StartCoroutine(TimeJustChanged());
             Destroy(other.gameObject);
+            SpeedSound.Play();
             gotSpeed();
         }
     }
@@ -58,6 +73,7 @@ public class ShootableEntity : MonoBehaviour
     protected virtual void gotSlowed()
     {
         timeStatus = Mathf.Max(timeStatus - 1, -maxStatus);
+
     }
 
     protected virtual void gotSpeed()

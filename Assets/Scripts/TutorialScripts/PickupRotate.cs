@@ -21,7 +21,15 @@ public class PickupRotate : MonoBehaviour
     {
         pickup.transform.Rotate(new Vector3(0, 50f, 0) * Time.deltaTime);
 
-        if (player.GetComponent<PlayerController>().PlayerCanFire())
+        //if (player.GetComponent<PlayerController>().PlayerCanFire())
+        //{
+        //    pickup.SetActive(false);
+        //}
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
         {
             pickup.SetActive(false);
         }

@@ -24,10 +24,14 @@ public class LauncherController : ShootableEnvironment
     bool waitingToGoForward;
     bool launch;
     bool walkOffLaunchDelay;
+
+    public AudioSource LaunchSound;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+        LaunchSound = GetComponent<AudioSource>();
         pos1 = transform.position;
         pos2 = pos1 + transform.up * lerpDistance;
         distance = Vector3.Distance(pos1, pos2);
@@ -112,6 +116,7 @@ public class LauncherController : ShootableEnvironment
     {
         if (launch && fastEnoughToLaunch() && other.attachedRigidbody)
         {
+            AudioSource.PlayClipAtPoint(LaunchSound.clip, other.transform.position);
             Launch(other);
         }
     }
