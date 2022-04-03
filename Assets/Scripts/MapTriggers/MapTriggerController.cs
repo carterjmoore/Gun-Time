@@ -92,7 +92,7 @@ public class MapTriggerController : MonoBehaviour
         if (this.name == "MapTrigger4" && IsObject() && other.gameObject.CompareTag("Player"))
         {
             StartCoroutine(DoorTrigger(object1, 26));
-            dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: This will be the exit out of the storage zone, your heading into the big guns now so watch yourself.", 0, false);
+            dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: This will be the exit out of the storage zone, you're heading into the big guns now so watch yourself.", 0, false);
             dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: I detect dozens of unfriendly faces beyond this door so stay on your toes.", 12, false);
             dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: Don't worry I'll still be here, I wanna see that device in full action!", 20, false);
             dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: What a miraculous device we've stumbled upon...", 28, false);
