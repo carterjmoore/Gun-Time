@@ -50,9 +50,10 @@ public class OptionsMenuController : MonoBehaviour
 
         //Set volumes
         AudioListener.volume = PlayerPrefs.GetFloat("masterVolume");
-        gameController.setMusicVolume();
+        controlMusicVolume();
     }
 
+    //Sets the sliders to display the values saved in preferences
     void SetUIToPrefs()
     {
         sensitivitySlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("sens"));
@@ -107,6 +108,7 @@ public class OptionsMenuController : MonoBehaviour
         button.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
     }
 
+    //Update sens according to slider value
     public void SetSens(float sens)
     {
         //Ignore the first time this is called (on start)
@@ -116,6 +118,7 @@ public class OptionsMenuController : MonoBehaviour
         PlayerPrefs.SetFloat("sens", sens);
     }
 
+    //Update master volume according to slider value
     public void SetMasterVolume(float volume)
     {
         if (volume == 0.0101f) return;
@@ -123,12 +126,20 @@ public class OptionsMenuController : MonoBehaviour
         AudioListener.volume = volume;
     }
 
+    //Update music volume according to slider value
     public void SetMusicVolume(float volume)
     {
         if (volume == 0.0101f) return;
         PlayerPrefs.SetFloat("musicVolume", volume);
-        gameController.setMusicVolume();
+        controlMusicVolume();
     }
 
     public void SavePrefs() { PlayerPrefs.Save(); }
+
+    //Tell whatever scene we're on to update music volume
+    void controlMusicVolume()
+    {
+        if (gameController != null) gameController.setMusicVolume();
+        else mainMenuController.setMusicVolume();
+    }
 }

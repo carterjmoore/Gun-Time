@@ -586,6 +586,10 @@ MonoBehaviour:
   mainMenuController: {fileID: 0}
   backButton: {fileID: 427517374837166863}
   resetButton: {fileID: 7419417147810114465}
+  masterVolumeText: {fileID: 0}
+  masterVolumeSlider: {fileID: 0}
+  musicVolumeText: {fileID: 0}
+  musicVolumeSlider: {fileID: 0}
   sensitivityText: {fileID: 1496666168682332187}
   sensitivitySlider: {fileID: 3228044261549603409}
 --- !u!1 &1028270742901057556
