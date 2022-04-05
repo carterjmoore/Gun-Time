@@ -38,6 +38,8 @@ public class GameController : MonoBehaviour
     public AudioSource deathSound;
     public AudioSource BGM1;
 
+    float musicVolumeDefault;
+
     private void Start()
     {
         hideUI();
@@ -50,6 +52,11 @@ public class GameController : MonoBehaviour
         enableChasers = true;
         enableShooters = true;
         invincibility = false;
+
+        musicVolumeDefault = BGM1.volume;
+        setMusicVolume();
+
+        AudioListener.volume = PlayerPrefs.GetFloat("masterVolume", 1f);
 
         if (SceneManager.GetActiveScene().name != "Introduction") {
             BGM1.loop = true;
@@ -219,4 +226,7 @@ public class GameController : MonoBehaviour
     }
 
     public bool isPaused() { return paused; }
+
+    //Set music volume according to player prefs
+    public void setMusicVolume() { BGM1.volume = musicVolumeDefault * PlayerPrefs.GetFloat("musicVolume", 1f); }
 }

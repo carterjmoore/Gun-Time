@@ -17,6 +17,10 @@ public class OptionsMenuController : MonoBehaviour
     [Header("UI References")]
     public Button backButton;
     public Button resetButton;
+    public TextMeshProUGUI masterVolumeText;
+    public Slider masterVolumeSlider;
+    public TextMeshProUGUI musicVolumeText;
+    public Slider musicVolumeSlider;
     public TextMeshProUGUI sensitivityText;
     public Slider sensitivitySlider;
 
@@ -27,23 +31,33 @@ public class OptionsMenuController : MonoBehaviour
     }
 
     //On the first time the game is loaded, player prefs will be empty
-    //This well set them to default values if they are empty
+    //This will set them to default values if they are empty
     void CheckPrefsExist()
     {
-        if (!PlayerPrefs.HasKey("sens")) SetDefaultPlayerPrefs();
+        if (!PlayerPrefs.HasKey("sens")
+            || !PlayerPrefs.HasKey("masterVolume")
+            || !PlayerPrefs.HasKey("musicVolume")) SetDefaultPlayerPrefs();
     }
     
     public void SetDefaultPlayerPrefs()
     {
         //If one is empty, they will all be empty
         PlayerPrefs.SetFloat("sens", 1);
+        PlayerPrefs.SetFloat("masterVolume", 1);
+        PlayerPrefs.SetFloat("musicVolume", 1);
         SavePrefs();
         SetUIToPrefs();
+
+        //Set volumes
+        AudioListener.volume = PlayerPrefs.GetFloat("masterVolume");
+        gameController.setMusicVolume();
     }
 
     void SetUIToPrefs()
     {
         sensitivitySlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("sens"));
+        masterVolumeSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("masterVolume"));
+        musicVolumeSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("musicVolume"));
     }
 
     public void Back()
@@ -60,6 +74,10 @@ public class OptionsMenuController : MonoBehaviour
         disableButton(resetButton);
         sensitivityText.enabled = false;
         sensitivitySlider.gameObject.SetActive(false);
+        masterVolumeText.enabled = false;
+        masterVolumeSlider.gameObject.SetActive(false);
+        musicVolumeText.enabled = false;
+        musicVolumeSlider.gameObject.SetActive(false);
     }
 
     public void Show()
@@ -69,6 +87,10 @@ public class OptionsMenuController : MonoBehaviour
         SetUIToPrefs();
         sensitivityText.enabled = true;
         sensitivitySlider.gameObject.SetActive(true);
+        masterVolumeText.enabled = true;
+        masterVolumeSlider.gameObject.SetActive(true);
+        musicVolumeText.enabled = true;
+        musicVolumeSlider.gameObject.SetActive(true);
     }
 
     void disableButton(Button button)
@@ -92,6 +114,20 @@ public class OptionsMenuController : MonoBehaviour
         //0.0101 is the starting value I set for the slider (but it will get changed by code and get set to the sens saved in prefs)
         if (sens == 0.0101f) return;
         PlayerPrefs.SetFloat("sens", sens);
+    }
+
+    public void SetMasterVolume(float volume)
+    {
+        if (volume == 0.0101f) return;
+        PlayerPrefs.SetFloat("masterVolume", volume);
+        AudioListener.volume = volume;
+    }
+
+    public void SetMusicVolume(float volume)
+    {
+        if (volume == 0.0101f) return;
+        PlayerPrefs.SetFloat("musicVolume", volume);
+        gameController.setMusicVolume();
     }
 
     public void SavePrefs() { PlayerPrefs.Save(); }
