@@ -8,11 +8,13 @@ using TMPro;
 public class MainMenuController : MonoBehaviour
 {
     //Main menu stuff
+    [Header("Main Menu References")]
     public TextMeshProUGUI titleText;
     public Button levelsButton;
     public Button optionsButton;
     public Button quitButton;
 
+    [Header("Level References")]
     //Level select stuff
     public Button introductionButton;
     public Button chasmButton;
@@ -24,11 +26,26 @@ public class MainMenuController : MonoBehaviour
     public Button backButton;
 
     //Options menu
+    [Header("Options")]
     public OptionsMenuController optionsController;
+
+    //Audio
+    [Header("Audio")]
+    public AudioSource BGM;
+    float musicVolumeDefault;
 
     void Start()
     {
         ShowMainMenu();
+
+        //Get and set audio volume values
+        musicVolumeDefault = BGM.volume;
+        setMusicVolume();
+        AudioListener.volume = PlayerPrefs.GetFloat("masterVolume", 1f);
+
+        //Play background music on loop
+        BGM.loop = true;
+        BGM.Play();
     }
 
     public void ShowMainMenu()
@@ -135,4 +152,7 @@ public class MainMenuController : MonoBehaviour
         button.enabled = true;
         button.GetComponentInChildren<TextMeshProUGUI>().enabled = true;
     }
+
+    //Set music volume according to player prefs
+    public void setMusicVolume() { BGM.volume = musicVolumeDefault * PlayerPrefs.GetFloat("musicVolume", 1f); }
 }

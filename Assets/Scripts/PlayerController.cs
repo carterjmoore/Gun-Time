@@ -68,8 +68,6 @@ public class PlayerController : MonoBehaviour
         {
             canFire = true;
         }
-
-
     }
 
     private void Update()
