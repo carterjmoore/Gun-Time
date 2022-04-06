@@ -42,7 +42,7 @@ public class IntroScript : MonoBehaviour
         yield return new WaitForSeconds(3);
         dialogueManager.GetComponent<DialogueManager>().PlayerSay("| Enabling Audio Drivers...", 0, true);
         yield return new WaitForSeconds(2);
-        gameController.GetComponent<AudioSource>().PlayOneShot(staticRepair);
+        gameController.GetComponent<AudioSource>().PlayOneShot(staticRepair, 0.7f);
         dialogueManager.GetComponent<DialogueManager>().PlayerSay("| Stablizing Audio Drivers...", 3, true);
         dialogueManager.GetComponent<DialogueManager>().PlayerSay("| Testing Audio Drivers...", 7, true);
         yield return new WaitForSeconds(9);
@@ -63,8 +63,7 @@ public class IntroScript : MonoBehaviour
 
         dialogueManager.GetComponent<DialogueManager>().PlayerSay("[???]: Hey would you look at that! Visor Optics are operational.", 3, false);
         yield return new WaitForSeconds(7);
-        gameController.GetComponent<GameController>().BGM1.loop = true;
-        gameController.GetComponent<GameController>().BGM1.Play();
+        gameController.GetComponent<GameController>().restartBGM();
 
         dialogueManager.GetComponent<DialogueManager>().PlayerSay("[???]: Can you look around?", 0, false);
         dialogueManager.GetComponent<DialogueManager>().PlayerSay("[???]: You landed in a spare storage compartment labelled -E7_3- meaning there should be a door leading to -E7_2- beside you.", 3, false);

@@ -54,11 +54,9 @@ public class GameController : MonoBehaviour
         enableShooters = true;
         invincibility = false;
 
-        if(bgmPlayer == null)
-        {
-            bgmPlayer = Instantiate(bgmPlayerPrefab);
-            DontDestroyOnLoad(bgmPlayer);
-        }
+        //We don't want BGM to persist if on the introduction
+        if (SceneManager.GetActiveScene().name == "Introduction" && bgmPlayer != null) Destroy(bgmPlayer);
+        else if (SceneManager.GetActiveScene().name != "Introduction" && bgmPlayer == null) restartBGM();
     }
 
     void Update()
@@ -230,4 +228,10 @@ public class GameController : MonoBehaviour
 
     //Set music volume according to player prefs
     public void setMusicVolume() { BGM1.GetComponent<BackgroundMusicController>().setMusicVolume(); }
+
+    public void restartBGM()
+    {
+        bgmPlayer = Instantiate(bgmPlayerPrefab);
+        DontDestroyOnLoad(bgmPlayer);
+    }
 }
