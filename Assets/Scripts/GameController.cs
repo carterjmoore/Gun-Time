@@ -35,10 +35,11 @@ public class GameController : MonoBehaviour
     public bool enableShooters = true;
     public bool invincibility = false;
 
+    [Header("Audio")]
+    public GameObject bgmPlayerPrefab;
     public AudioSource deathSound;
     public AudioSource BGM1;
-
-    float musicVolumeDefault;
+    private static GameObject bgmPlayer;
 
     private void Start()
     {
@@ -53,14 +54,10 @@ public class GameController : MonoBehaviour
         enableShooters = true;
         invincibility = false;
 
-        musicVolumeDefault = BGM1.volume;
-        setMusicVolume();
-
-        AudioListener.volume = PlayerPrefs.GetFloat("masterVolume", 1f);
-
-        if (SceneManager.GetActiveScene().name != "Introduction") {
-            BGM1.loop = true;
-            BGM1.Play();
+        if(bgmPlayer == null)
+        {
+            bgmPlayer = Instantiate(bgmPlayerPrefab);
+            DontDestroyOnLoad(bgmPlayer);
         }
     }
 
@@ -167,10 +164,14 @@ public class GameController : MonoBehaviour
 
     public void ToMainMenu() {
         Time.timeScale = 1;
+        Destroy(bgmPlayer);
         SceneManager.LoadScene("MainMenu"); 
     }
 
-    public void NextLevel() { SceneManager.LoadScene(nextLevelName); }
+    public void NextLevel() {
+        Destroy(bgmPlayer);
+        SceneManager.LoadScene(nextLevelName); 
+    }
 
     public void Retry() {
         Time.timeScale = 1;
@@ -228,5 +229,5 @@ public class GameController : MonoBehaviour
     public bool isPaused() { return paused; }
 
     //Set music volume according to player prefs
-    public void setMusicVolume() { BGM1.volume = musicVolumeDefault * PlayerPrefs.GetFloat("musicVolume", 1f); }
+    public void setMusicVolume() { BGM1.GetComponent<BackgroundMusicController>().setMusicVolume(); }
 }

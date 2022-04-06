@@ -1243,6 +1243,8 @@ MonoBehaviour:
   enableChasers: 1
   enableShooters: 1
   invincibility: 0
+  bgmPlayerPrefab: {fileID: 8399453368092959506, guid: 82df18a905042844994a8920856b1758,
+    type: 3}
   deathSound: {fileID: -7758728600238928887}
   BGM1: {fileID: 17840105714691468}
 --- !u!82 &-7758728600238928887
