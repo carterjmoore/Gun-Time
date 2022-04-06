@@ -571,6 +571,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 937209655158585870}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2520096411868968426
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,6 +777,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3302158445614174852}
         m_MethodName: ShowOptions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 937209655158585870}
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1762,6 +1784,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 937209655158585870}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5458219681518057615
 GameObject:
   m_ObjectHideFlags: 0
@@ -2153,6 +2186,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 937209655158585870}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8355443469723585537
 GameObject:
   m_ObjectHideFlags: 0
@@ -2274,6 +2318,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3302158445614174852}
         m_MethodName: NextLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 937209655158585870}
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2972,6 +3027,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 521c286ab70286e4c824b73b63753503, type: 3}
+--- !u!224 &5539263995420037084 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 9141369420194292685, guid: 521c286ab70286e4c824b73b63753503,
+    type: 3}
+  m_PrefabInstance: {fileID: 3603935562015435793}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &937209655158585870 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4540300757103597087, guid: 521c286ab70286e4c824b73b63753503,
+    type: 3}
+  m_PrefabInstance: {fileID: 3603935562015435793}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &869587674716044449 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4472818999399420080, guid: 521c286ab70286e4c824b73b63753503,
@@ -2984,9 +3051,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10372fe7c955a5a43bb52b8f7de1b9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &5539263995420037084 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 9141369420194292685, guid: 521c286ab70286e4c824b73b63753503,
-    type: 3}
-  m_PrefabInstance: {fileID: 3603935562015435793}
-  m_PrefabAsset: {fileID: 0}
