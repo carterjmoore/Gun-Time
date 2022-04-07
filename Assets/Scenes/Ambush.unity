@@ -681,6 +681,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 73381241}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &76699690 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3255797992991965995, guid: 93ae09d420f1dad47a5444e833c1d553,
+    type: 3}
+  m_PrefabInstance: {fileID: 3302158444410464256}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &79401029
 GameObject:
   m_ObjectHideFlags: 0
@@ -10308,6 +10314,65 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9d35036d1fb096458c456bdae734073, type: 3}
+--- !u!1 &1153982747
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1153982750}
+  - component: {fileID: 1153982749}
+  - component: {fileID: 1153982748}
+  m_Layer: 0
+  m_Name: AmbushTrigger1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1153982748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153982747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 127de153f36abd344b278188b0451286, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  object1: {fileID: 0}
+  dialogueManager: {fileID: 76699690}
+--- !u!65 &1153982749
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153982747}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1153982750
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153982747}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.168, y: 22.051, z: 27.348}
+  m_LocalScale: {x: 5.45479, y: 3.8564167, z: 0.06655707}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1159425620 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6328848623129374926, guid: 86a8e3e677dcd224fa4ecb45eb1a7257,
@@ -11632,6 +11697,65 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1301852051}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1314274435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1314274438}
+  - component: {fileID: 1314274437}
+  - component: {fileID: 1314274436}
+  m_Layer: 0
+  m_Name: AmbushTrigger2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1314274436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314274435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 127de153f36abd344b278188b0451286, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  object1: {fileID: 0}
+  dialogueManager: {fileID: 76699690}
+--- !u!65 &1314274437
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314274435}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4197423, y: 1.7966815, z: 1}
+  m_Center: {x: -0.61099744, y: -0.18640661, z: 0}
+--- !u!4 &1314274438
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314274435}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -88.91, y: 7.63, z: 150.27}
+  m_LocalScale: {x: 5.45479, y: 3.8564167, z: 0.06655707}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1319372373 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2021865077989801469, guid: c9d35036d1fb096458c456bdae734073,
@@ -20158,6 +20282,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1332137232, guid: 93ae09d420f1dad47a5444e833c1d553, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 543.2124
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332137232, guid: 93ae09d420f1dad47a5444e833c1d553, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 65.04994
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332137232, guid: 93ae09d420f1dad47a5444e833c1d553, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -190.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332137232, guid: 93ae09d420f1dad47a5444e833c1d553, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 164.8
+      objectReference: {fileID: 0}
     - target: {fileID: 783405535737227147, guid: 93ae09d420f1dad47a5444e833c1d553,
         type: 3}
       propertyPath: m_AnchorMax.x
