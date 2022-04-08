@@ -91,7 +91,7 @@ public class MapTriggerController : MonoBehaviour
         }
         if (this.name == "ChasmTrigger1" && other.gameObject.CompareTag("Player"))
         {
-            dialogueManager.GetComponent<DialogueManager>().PlayerSay("[Note]: Collision between two projectiles nullify both projectiles.", 10, true);
+            dialogueManager.GetComponent<DialogueManager>().PlayerSay("[Note]: Collision between two projectiles will nullify both projectiles.", 10, true);
             dialogueManager.GetComponent<DialogueManager>().PlayerSay("", 20, true);
 
             dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: This room looked a lot smaller in the files...", 0, false);
@@ -102,7 +102,7 @@ public class MapTriggerController : MonoBehaviour
         }
         if (this.name == "ChasmTrigger2" && other.gameObject.CompareTag("Player"))
         {
-            dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: Those holo red cubes will destroy you when your body comes in contact, best to leave them untouched.", 0, false);
+            dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: Those lasers will destroy you when your body comes in contact, best to leave them untouched.", 0, false);
             dialogueManager.GetComponent<DialogueManager>().PlayerSay("", 12, false);
             this.GetComponent<BoxCollider>().enabled = false;
 
