@@ -16,11 +16,11 @@ Note that the project was originally developed in Unity 2019.4.\*, so opening th
 ## Project Organization
 All important files for the project can be found in the `Assets` folder in the main directory. Important subdirectories include:
 
-- `Assets/Scripts` Contains all the C# scripts for the project.
-- `Assets/Prefabs` Contains all prefabs for the project.
-- `Assets/Scenes` Contains all the scenes for the project, and all the lighting for those scenes.
-- `Assets/Materials` Contains all the materials used for the project.
-- `Assets/Sounds` and `Assets/Resources` Contain all the sound files used in the project.
+- `Assets/Scripts` contains all the C# scripts for the project.
+- `Assets/Prefabs` contains all prefabs for the project.
+- `Assets/Scenes` contains all the scenes for the project, and all the lighting for those scenes.
+- `Assets/Materials` contains all the materials used for the project.
+- `Assets/Sounds` and `Assets/Resources` contain all the sound files used in the project.
 
 ## Contributors
 - [Carter Moore](https://github.com/carterjmoore)
