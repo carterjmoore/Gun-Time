@@ -38,7 +38,6 @@ public class GameController : MonoBehaviour
     [Header("Audio")]
     public GameObject bgmPlayerPrefab;
     public AudioSource deathSound;
-    public AudioSource BGM1;
     private static GameObject bgmPlayer;
 
     private void Start()
@@ -227,7 +226,7 @@ public class GameController : MonoBehaviour
     public bool isPaused() { return paused; }
 
     //Set music volume according to player prefs
-    public void setMusicVolume() { BGM1.GetComponent<BackgroundMusicController>().setMusicVolume(); }
+    public void setMusicVolume() { bgmPlayer.GetComponent<BackgroundMusicController>().setMusicVolume(); }
 
     public void restartBGM()
     {
