@@ -85,6 +85,7 @@ GameObject:
   - component: {fileID: 1332137232}
   - component: {fileID: 1332137234}
   - component: {fileID: 1332137233}
+  - component: {fileID: 4247683738920806742}
   m_Layer: 5
   m_Name: DialogueText
   m_TagString: Untagged
@@ -154,6 +155,21 @@ MonoBehaviour:
   m_Text: '
 
 '
+--- !u!114 &4247683738920806742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332137231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1825187200
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +181,7 @@ GameObject:
   - component: {fileID: 1825187203}
   - component: {fileID: 1825187202}
   - component: {fileID: 1825187201}
+  - component: {fileID: 9219422077446197940}
   m_Layer: 5
   m_Name: MiniPopupText
   m_TagString: Untagged
@@ -232,6 +249,21 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &9219422077446197940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825187200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &252565937657790051
 GameObject:
   m_ObjectHideFlags: 0
@@ -1245,7 +1277,6 @@ MonoBehaviour:
   bgmPlayerPrefab: {fileID: 8399453368092959506, guid: 82df18a905042844994a8920856b1758,
     type: 3}
   deathSound: {fileID: -7758728600238928887}
-  BGM1: {fileID: 0}
 --- !u!82 &-7758728600238928887
 AudioSource:
   m_ObjectHideFlags: 0
