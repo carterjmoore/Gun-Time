@@ -2853,7 +2853,7 @@ GameObject:
   - component: {fileID: 354486337}
   - component: {fileID: 354486336}
   - component: {fileID: 354486335}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: ChasmTrigger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5524,7 +5524,7 @@ GameObject:
   - component: {fileID: 817542346}
   - component: {fileID: 817542345}
   - component: {fileID: 817542344}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: ChasmTrigger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

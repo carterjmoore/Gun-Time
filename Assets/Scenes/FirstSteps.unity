@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 08edbca1c5c609d44af9b422d43978cd,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 51601304}
   - component: {fileID: 51601303}
   - component: {fileID: 51601302}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: FirstStepsTrigger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1645,7 +1645,7 @@ GameObject:
   - component: {fileID: 404868147}
   - component: {fileID: 404868146}
   - component: {fileID: 404868145}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: FirstStepsTrigger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

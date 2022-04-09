@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: a2a30e1f4929e3d4a83631a14336dbd2,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3119,7 +3119,7 @@ GameObject:
   - component: {fileID: 1139314157}
   - component: {fileID: 1139314156}
   - component: {fileID: 1139314155}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: FloorIsLavaTrigger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4664,7 +4664,7 @@ GameObject:
   - component: {fileID: 1636688820}
   - component: {fileID: 1636688819}
   - component: {fileID: 1636688818}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: FloorIsLavaTrigger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

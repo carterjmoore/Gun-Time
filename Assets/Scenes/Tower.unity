@@ -3994,7 +3994,7 @@ GameObject:
   - component: {fileID: 417534584}
   - component: {fileID: 417534583}
   - component: {fileID: 417534582}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: TowerTrigger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12895,7 +12895,7 @@ GameObject:
   - component: {fileID: 1229308182}
   - component: {fileID: 1229308181}
   - component: {fileID: 1229308180}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: TowerTrigger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
