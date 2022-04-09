@@ -97,9 +97,9 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: c7d93459b4cd01b41875d7b5be11af23,
+  m_LightingDataAsset: {fileID: 112000000, guid: 08edbca1c5c609d44af9b422d43978cd,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -959,7 +959,7 @@ Transform:
   m_Children:
   - {fileID: 429583147}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &258105142
 PrefabInstance:
@@ -2141,7 +2141,7 @@ PrefabInstance:
     - target: {fileID: 3302158445614174852, guid: 93ae09d420f1dad47a5444e833c1d553,
         type: 3}
       propertyPath: nextLevelName
-      value: End
+      value: Chasm
       objectReference: {fileID: 0}
     - target: {fileID: 3302158445614174853, guid: 93ae09d420f1dad47a5444e833c1d553,
         type: 3}
