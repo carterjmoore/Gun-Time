@@ -12,12 +12,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Introduction.unity
     guid: 65131f617bc234842848ef67e73c92f9
   - enabled: 1
+    path: Assets/Scenes/FirstSteps.unity
+    guid: 35d5090b9b98e7a419b26fdff241109b
+  - enabled: 1
     path: Assets/Scenes/Chasm.unity
     guid: adb0bfc76cfde7e42a573b05dc2b06eb
   - enabled: 1
     path: Assets/Scenes/Gauntlet.unity
     guid: a6cacb5a384ce7043b3f8ac559bbd8ec
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/HallwayOfDeath.unity
     guid: 3bca6e32d0fe4e24da25baefabbba24e
   - enabled: 1

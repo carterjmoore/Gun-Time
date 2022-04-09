@@ -89,20 +89,31 @@ public class MapTriggerController : MonoBehaviour
             dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: What a miraculous device we've stumbled upon...", 28, false);
             this.GetComponent<BoxCollider>().enabled = false;
         }
+        if (this.name == "FirstStepsTrigger1" && other.gameObject.CompareTag("Player"))
+        {
+            dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: Watch out, don't let that thing touch you!", 0, false);
+            dialogueManager.GetComponent<DialogueManager>().PlayerSay("", 4, false);
+            this.GetComponent<BoxCollider>().enabled = false;
+        }
+        if (this.name == "FirstStepsTrigger2" && other.gameObject.CompareTag("Player"))
+        {
+            dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: Careful! Those projectiles are deadly.", 0, false);
+            dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: You should be able to stop them if they collide with your own projectile.", 5, false);
+            dialogueManager.GetComponent<DialogueManager>().PlayerSay("", 15, false);
+            this.GetComponent<BoxCollider>().enabled = false;
+        }
         if (this.name == "ChasmTrigger1" && other.gameObject.CompareTag("Player"))
         {
-            dialogueManager.GetComponent<DialogueManager>().PlayerSay("[Note]: Collision between two projectiles will nullify both projectiles.", 10, true);
-            dialogueManager.GetComponent<DialogueManager>().PlayerSay("", 20, true);
-
             dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: This room looked a lot smaller in the files...", 0, false);
-            dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: Watch it! Those projectiles are quite unfriendly, you can stop the bullet when it collides with your own!", 6, false);
-            dialogueManager.GetComponent<DialogueManager>().PlayerSay("", 14, false);
+            dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: Woah! Looks like that hostile is hiding behind a laser... no fair, the Time Gun can't shoot through lasers!", 5, false);
+            dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: You'll have to maneuveur around to get a clear shot.", 13, false);
+            dialogueManager.GetComponent<DialogueManager>().PlayerSay("", 19, false);
             this.GetComponent<BoxCollider>().enabled = false;
 
         }
         if (this.name == "ChasmTrigger2" && other.gameObject.CompareTag("Player"))
         {
-            dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: Those lasers will destroy you when your body comes in contact, best to leave them untouched.", 0, false);
+            dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: Those lasers will destroy you if your body comes in contact, best to leave them untouched.", 0, false);
             dialogueManager.GetComponent<DialogueManager>().PlayerSay("", 12, false);
             this.GetComponent<BoxCollider>().enabled = false;
 

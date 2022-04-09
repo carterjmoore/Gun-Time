@@ -17,9 +17,9 @@ public class MainMenuController : MonoBehaviour
     [Header("Level References")]
     //Level select stuff
     public Button introductionButton;
+    public Button firstStepsButton;
     public Button chasmButton;
     public Button gauntletButton;
-    public Button hallwayButton;
     public Button lavaButton;
     public Button ambushButton;
     public Button towerButton;
@@ -60,7 +60,7 @@ public class MainMenuController : MonoBehaviour
         disableButton(introductionButton);
         disableButton(chasmButton);
         disableButton(gauntletButton);
-        disableButton(hallwayButton);
+        disableButton(firstStepsButton);
         disableButton(lavaButton);
         disableButton(ambushButton);
         disableButton(towerButton);
@@ -82,7 +82,7 @@ public class MainMenuController : MonoBehaviour
         enableButton(introductionButton);
         enableButton(chasmButton);
         enableButton(gauntletButton);
-        enableButton(hallwayButton);
+        enableButton(firstStepsButton);
         enableButton(lavaButton);
         enableButton(ambushButton);
         enableButton(towerButton);
@@ -109,6 +109,11 @@ public class MainMenuController : MonoBehaviour
         SceneManager.LoadScene("Introduction");
     }
 
+    public void LoadFirstSteps()
+    {
+        SceneManager.LoadScene("FirstSteps");
+    }
+
     public void LoadChasm()
     {
         SceneManager.LoadScene("Chasm");
@@ -117,11 +122,6 @@ public class MainMenuController : MonoBehaviour
     public void LoadGauntlet()
     {
         SceneManager.LoadScene("Gauntlet");
-    }
-
-    public void LoadHallway()
-    {
-        SceneManager.LoadScene("HallwayOfDeath");
     }
 
     public void LoadLava()
