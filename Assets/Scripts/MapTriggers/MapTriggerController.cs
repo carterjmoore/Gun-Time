@@ -154,14 +154,14 @@ public class MapTriggerController : MonoBehaviour
         if (this.name == "TowerTrigger1" && other.gameObject.CompareTag("Player"))
         {
             dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: This area is interesting, I hope you enjoy verticality!", 0, false);
-            dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: You know I always wondered how does anyone even navigate through this place...", 10, false);
+            dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: You know I wonder... how does anyone even navigate through this place?", 10, false);
             dialogueManager.GetComponent<DialogueManager>().PlayerSay("", 20, false);
             this.GetComponent<BoxCollider>().enabled = false;
         }
         if (this.name == "TowerTrigger2" && other.gameObject.CompareTag("Player"))
         {
-            dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: Careful that room has security!", 0, false);
-            dialogueManager.GetComponent<DialogueManager>().PlayerSay("", 6, false);
+            dialogueManager.GetComponent<DialogueManager>().PlayerSay("[-EEVL_I-]: The extraction point from the facility should be just on the other side of this room!", 0, false);
+            dialogueManager.GetComponent<DialogueManager>().PlayerSay("", 10, false);
             this.GetComponent<BoxCollider>().enabled = false;
         }
     }
