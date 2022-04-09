@@ -8,6 +8,7 @@ public class DialogueManager : MonoBehaviour
     public Text dialogueText;
     public Text minipopText;
     public AudioSource dialogueSound;
+    bool playing;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +45,7 @@ public class DialogueManager : MonoBehaviour
         if (!isMinipop)
         {
             dialogueSound.Play();
+            playing = true;
             dialogueText.text = "";
             foreach (char letter in dialogue.ToCharArray())
             {
@@ -51,6 +53,7 @@ public class DialogueManager : MonoBehaviour
                 yield return new WaitForSeconds(0.05f);
             }
             dialogueSound.Stop();
+            playing = false;
         }
         else
         {
@@ -61,6 +64,9 @@ public class DialogueManager : MonoBehaviour
                 yield return new WaitForSeconds(0.05f);
             }
         }
-        
     }
+
+    public void pause() { if (playing) dialogueSound.Pause(); }
+
+    public void unPause() { if (playing) dialogueSound.UnPause(); }
 }

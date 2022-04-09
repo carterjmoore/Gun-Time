@@ -38,6 +38,7 @@ public class GameController : MonoBehaviour
     [Header("Audio")]
     public GameObject bgmPlayerPrefab;
     public AudioSource deathSound;
+    public DialogueManager dialogueManager;
     private static GameObject bgmPlayer;
 
     private void Start()
@@ -93,6 +94,9 @@ public class GameController : MonoBehaviour
         enableButton(mainMenuButton);
         enableButton(retryButton);
 
+        //Pause dialogue sound
+        dialogueManager.pause();
+
         gameOver = true;
     }
 
@@ -137,6 +141,9 @@ public class GameController : MonoBehaviour
         enableButton(optionsButton);
         enableButton(mainMenuButton);
 
+        //Pause dialogue sound
+        dialogueManager.pause();
+
         paused = true;
     }
 
@@ -148,6 +155,9 @@ public class GameController : MonoBehaviour
         hideUI();
         optionsController.SavePrefs();
         optionsController.Hide();
+
+        //Pause dialogue sound
+        dialogueManager.unPause();
 
         paused = false;
     }

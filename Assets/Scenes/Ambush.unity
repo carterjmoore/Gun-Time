@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 5cb641fd0c12b0047b35c6729678abc8,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -10141,7 +10141,7 @@ GameObject:
   - component: {fileID: 1153982750}
   - component: {fileID: 1153982749}
   - component: {fileID: 1153982748}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: AmbushTrigger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11524,7 +11524,7 @@ GameObject:
   - component: {fileID: 1314274438}
   - component: {fileID: 1314274437}
   - component: {fileID: 1314274436}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: AmbushTrigger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

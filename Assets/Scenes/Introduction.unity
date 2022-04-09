@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: c485f1f2d14a4304a8fb85eb8afac556,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -838,7 +838,7 @@ GameObject:
   - component: {fileID: 91942091}
   - component: {fileID: 91942094}
   - component: {fileID: 91942092}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: MapTrigger3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2654,7 +2654,7 @@ GameObject:
   - component: {fileID: 203525590}
   - component: {fileID: 203525592}
   - component: {fileID: 203525591}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: MapTrigger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3059,7 +3059,7 @@ GameObject:
   - component: {fileID: 224167396}
   - component: {fileID: 224167395}
   - component: {fileID: 224167397}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: DispenserTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9438,7 +9438,7 @@ GameObject:
   - component: {fileID: 675062419}
   - component: {fileID: 675062421}
   - component: {fileID: 675062420}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: MapTrigger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15647,7 +15647,7 @@ GameObject:
   - component: {fileID: 1148981001}
   - component: {fileID: 1148981002}
   - component: {fileID: 1148981003}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: PickupTrigger
   m_TagString: GunPickUp
   m_Icon: {fileID: 0}
@@ -25085,7 +25085,7 @@ GameObject:
   - component: {fileID: 1780558466}
   - component: {fileID: 1780558468}
   - component: {fileID: 1780558467}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: MapTrigger4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
