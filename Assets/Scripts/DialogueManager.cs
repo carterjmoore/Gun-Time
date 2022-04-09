@@ -7,10 +7,12 @@ public class DialogueManager : MonoBehaviour
 
     public Text dialogueText;
     public Text minipopText;
+    public AudioSource dialogueSound;
 
     // Start is called before the first frame update
     void Start()
     {
+        dialogueSound.loop = true;
     }
 
     // Update is called once per frame
@@ -41,12 +43,14 @@ public class DialogueManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
         if (!isMinipop)
         {
+            dialogueSound.Play();
             dialogueText.text = "";
             foreach (char letter in dialogue.ToCharArray())
             {
                 dialogueText.text += letter;
                 yield return new WaitForSeconds(0.05f);
             }
+            dialogueSound.Stop();
         }
         else
         {
@@ -57,6 +61,6 @@ public class DialogueManager : MonoBehaviour
                 yield return new WaitForSeconds(0.05f);
             }
         }
+        
     }
-
 }
