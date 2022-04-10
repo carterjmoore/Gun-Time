@@ -34,4 +34,10 @@ public class BulletController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    //takes in normal vector from plane it will collide with, then reflects it
+    public void ReflectObject(Vector3 inNormal)
+    {
+        //velocity = Vector3.Reflect(velocity, inNormal);
+    }
 }
