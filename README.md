@@ -34,3 +34,22 @@ All important files for the project can be found in the `Assets` folder in the m
 - [Carter Moore](https://github.com/carterjmoore)
 - [Samuel Bain](https://github.com/LeumasNaib)
 - [Brilliant Nguyen](https://github.com/YourFrostyFriend)
+
+## External Resources Used
+Tutorial for dialogue: https://www.youtube.com/watch?v=_nRzoTzeyxU
+
+Tutorial for player and camera movement: https://www.youtube.com/watch?v=LqnPeqoJRFY
+
+Slow/speed shader inspired by: https://www.youtube.com/watch?v=BZ1K3JXTlbY&t=63s
+
+Inspiration for main menu UI: https://www.youtube.com/watch?v=zc8ac_qUXQY&t=479s
+
+Inspiration for options menu: https://www.youtube.com/watch?v=YOaYQrN1oYQ&t=175s
+
+Left-click fire / right-click fire: Taken from Portal 2
+
+Various sound effects came from: https://99sounds.org/
+
+Level background music: https://www.youtube.com/watch?v=GmqkV_QBXTs
+
+Menu music: https://www.youtube.com/watch?v=4s--btQafWs 
