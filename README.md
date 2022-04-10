@@ -13,6 +13,14 @@ Note that the game was developed for play with a 16:9 aspect ratio, so using oth
 Alternatively, the project can be opened in Unity, and either ran directly in the editor, or an executable can be created via File > Build Settings > Build.\
 Note that the project was originally developed in Unity 2019.4.\*, so opening the project in another version of Unity may cause issues.
 
+We have added a few cheats to make testing our game easier, which are as follows:
+- I: Toggle invincibility.
+- F: Disable/enable all chaser enemies.
+- G: Disable/enable all shooter enemies.
+- Q: Decreases the time status of (slows) everything in the scene (careful, includes enemies).
+- E: Increases the time status of (speeds up) everything in the scene (careful, includes enemies).
+
+
 ## Project Organization
 All important files for the project can be found in the `Assets` folder in the main directory. Important subdirectories include:
 
