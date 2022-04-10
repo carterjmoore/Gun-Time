@@ -4391,7 +4391,7 @@ PrefabInstance:
     - target: {fileID: 3302158445614174852, guid: 93ae09d420f1dad47a5444e833c1d553,
         type: 3}
       propertyPath: nextLevelName
-      value: HallwayOfDeath
+      value: FloorIsLava
       objectReference: {fileID: 0}
     - target: {fileID: 3302158445614174853, guid: 93ae09d420f1dad47a5444e833c1d553,
         type: 3}
