@@ -7,10 +7,10 @@ The game contains seven levels, and more may be added in the future if developme
 This game was made as part of a university-level Intro to Video Game Development course.
 
 ## How to Play
-The game can be played on the Unity Play website at: *add link here*
+The game can be played on the Unity Play website at: https://play.unity.com/mg/other/webgl-dvj \
 Note that the game was developed for play with a 16:9 aspect ratio, so using other aspect ratios may cause UI/menu elements to be displayed strangely.
 
-Alternatively, the project can be opened in Unity, and either ran directly in the editor, or an executable can be created via File > Build Settings > Build.
+Alternatively, the project can be opened in Unity, and either ran directly in the editor, or an executable can be created via File > Build Settings > Build.\
 Note that the project was originally developed in Unity 2019.4.\*, so opening the project in another version of Unity may cause issues.
 
 ## Project Organization
