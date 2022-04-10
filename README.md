@@ -48,7 +48,9 @@ Inspiration for options menu: https://www.youtube.com/watch?v=YOaYQrN1oYQ&t=175s
 
 Left-click fire / right-click fire: Taken from Portal 2
 
-Various sound effects came from: https://99sounds.org/
+Death sound: Taken from Minecraft
+
+Various sound effects came from: https://99sounds.org/ and https://freesound.org/
 
 Level background music: https://www.youtube.com/watch?v=GmqkV_QBXTs
 
