@@ -56,6 +56,8 @@ public class PlayerController : MonoBehaviour
     public GameObject Camera;
     public AudioSource speedShot;
     public AudioSource slowShot;
+    public AudioSource landingSound;
+
 
 
 
@@ -90,6 +92,12 @@ public class PlayerController : MonoBehaviour
         if(!isGrounded && wasGrounded)
         {
             StartCoroutine(PlayerJumpGracePeriod());
+        }
+
+        //if player was not grounded last frame and is this frame, play landing sound
+        if(isGrounded && !wasGrounded)
+        {
+            landingSound.Play();
         }
 
         //stores whether the player was grounded in the previous frame
