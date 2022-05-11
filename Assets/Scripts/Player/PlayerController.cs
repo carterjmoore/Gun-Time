@@ -15,9 +15,12 @@ public class PlayerController : MonoBehaviour
     public float movementMultiplier = 10f;
     public float airMultiplier = 0.4f;
     public float jumpForce = 10.0f;
+    public float jumpGraceTime = 0.1f;
+
     [Header("Shooting")]
     public float bulletSpeed = 18f;
     public float reloadTime = 1f;
+
     [Header("Drag")]
     public float groundDrag = 6f;
     public float airDrag = 2f;
@@ -27,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Ground Detection")]
     [SerializeField] LayerMask groundMask;
-    bool isGrounded;
+
     float groundDistance = 0.45f;
 
     RaycastHit slopeHit;
@@ -35,6 +38,9 @@ public class PlayerController : MonoBehaviour
     Vector3 moveDirection;
 
     bool isDead;
+    bool jumpGracePeriod;
+    bool wasGrounded;
+    bool isGrounded;
     bool canFire; //can the player fire
 
     Rigidbody rb;
@@ -60,6 +66,7 @@ public class PlayerController : MonoBehaviour
         //Make sure player doesn't spin from forces
         rb.freezeRotation = true;
         isDead = false;
+        jumpGracePeriod = false;
         if (SceneManager.GetActiveScene().name == "Introduction")
         {
             canFire = false;
@@ -79,11 +86,28 @@ public class PlayerController : MonoBehaviour
         //Check if the player is touching the ground
         isGrounded = Physics.CheckSphere(transform.position - new Vector3(0, 1.1f, 0), groundDistance, groundMask);
 
+        //if player was grounded last frame but is no longer grounded, give a jumping grace period
+        if(!isGrounded && wasGrounded)
+        {
+            StartCoroutine(PlayerJumpGracePeriod());
+        }
+
+        //stores whether the player was grounded in the previous frame
+        if (isGrounded)
+        {
+            wasGrounded = true;
+        }
+        else
+        {
+            wasGrounded = false;
+        }
+
+
         handleInput();
         //Keep setting drag to make sure the player doesn't slide with normal movement
         setDrag();
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && (isGrounded || jumpGracePeriod))
         {
             jump();
         }
@@ -214,6 +238,14 @@ public class PlayerController : MonoBehaviour
         canFire = false;
         yield return new WaitForSecondsRealtime(reloadTime);
         canFire = true;
+    }
+
+    IEnumerator PlayerJumpGracePeriod()
+    {
+        //this will pause the execution of this method for reloadTime
+        jumpGracePeriod = true;
+        yield return new WaitForSecondsRealtime(jumpGraceTime);
+        jumpGracePeriod = false;
     }
 
 
